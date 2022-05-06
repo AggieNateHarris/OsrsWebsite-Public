@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!--  boostrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+    <!--google fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}" />
+    <script src="{% static 'xkills/xKillsTheatre.js' %}"></script>
+
+    <title>SimulationScape - Simulations</title>
+</head>
+<body>
+
+<!--login area-->
+<section id="login-area">
+    <div class="login-field container">
+<!--        <form action="{% url 'home:home' %}" method="post">-->
+<!--            {% csrf_token %}-->
+<!--            <div class="row">-->
+                <div class="col-lg-3 col-sm-12">
+                    <div class="frontpage-title">SimulationScape</div>
+                </div>
+<!--                <div class="col-lg-4 col-md-12 ms-auto">-->
+<!--                    <div class="justify-right"><input id="login" name="usernametext" type="text"/>Username</div>-->
+<!--                    <div class="justify-right"><input class="login-box" id="password" name="passwordtext" type="password"/> Password</div>-->
+<!--                    <div class="justify-right">-->
+<!--                        <button class="btn btn-outline-warning" type="submit">Login</button>-->
+<!--                        <a class="register-button btn btn-outline-warning" href="{% url 'home:register' %}">Create Account</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="five-border"><a class="nav-link btn btn-outline-warning" href="{% url 'home:simulations' %}">Simulations</a></div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="five-border"><a class="nav-link btn btn-outline-warning" href="">Calculators</a></div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="five-border"><a class="nav-link btn btn-outline-warning" href="{% url 'home:about' %}">About</a></div>
+                </div>
+            </div>
+<!--        </form>-->
+    </div>
+</section>
+
+<!-- calculator area -->
+<section>
+    <h2 class="padding-4-7">
+        With this simulator you are able to simulate x completions of Theatre of Blood. This simulator literally
+        rolls on a loot table with the approximated rates from the wiki, assuming 0 deaths and team of 3. Rares shown consist of all
+        rares for the entire team, whereas the common drops are for one individual. This
+        simulator isn't going to necessarily give you the average, or likely, results from x kills.
+        Because it is rolling just as it would in-game it is possible, but unlikely, to get rare
+        abnormal results; just like in-game.
+        <br><br>
+        Max 10,000, min 1
+    </h2>
+    <table class="table">
+        <thread>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Count</th>
+            </tr>
+        </thread>
+        <tbody>
+        <tr>
+            <th scope="row">Lil'Zik <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/9/9f/Lil%27_zik.png?f3f45"></span></th>
+            <td id="zik" class="Olmlet">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Elite Clue <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a5/Clue_scroll_%28elite%29.png?e29cd"></span></th>
+            <td id="elite" class="Kodai">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Avernic Defender Hilt <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/68/Avernic_defender_hilt.png?e6de2"></span></th>
+            <td id="avernic" class="Elder Maul">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Ghrazi Rapier <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/8/83/Ghrazi_rapier.png?7b872"></span></th>
+            <td id="rapier" class="Twisted Bow">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Sanguinesti Staff <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a6/Sanguinesti_staff_%28uncharged%29.png?10255"></span></th>
+            <td id="sang" class="dhcb">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Justiciar Faceguard <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/e/e2/Justiciar_faceguard.png?7871a"></span></th>
+            <td id="faceguard" class="Claws">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Justiciar Chestguard <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/c1/Justiciar_chestguard.png?d988d"></span></th>
+            <td id="chestguard" class="Ancestral Hat">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Justiciar Legguards <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/b/b7/Justiciar_legguards.png?15702"></span></th>
+            <td id="legguards" class="Ancestral Robetop">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Scythe of Vitur <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/f/fa/Scythe_of_vitur_%28uncharged%29.png?5672e"></span></th>
+            <td id="scythe" class="Ancestral Robebottom">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Sanguine Dust <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/b/b3/Sanguine_dust.png?fbdac"></span></th>
+            <td id="dust" class="buckler">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Sanguine Ornament Kit <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/d/d1/Sanguine_ornament_kit.png?fbdac"></span></th>
+            <td id="sangorn" class="bulwark">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Holy Ornament Kit <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/af/Holy_ornament_kit.png?fbdac"></span></th>
+            <td id="holyorn" class="dex">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Vial of Blood <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/3/3d/Vial_of_blood.png?0987d"></span></th>
+            <td id="vialblood">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Death Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/5/55/Death_rune.png?090cd"></span></th>
+            <td id="death">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Blood Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/2/2a/Blood_rune.png?9dc50"></span></th>
+            <td id="bloodrune">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Swamp Tar <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/8/8d/Swamp_tar.png?65dd9"></span></th>
+            <td id="swamptar">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Coal <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a7/Coal.png?0b396"></span></th>
+            <td id="coal">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Gold Ore <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/9/91/Gold_ore.png?5d60c"></span></th>
+            <td id="gold">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Molten Glass <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/8/84/Molten_glass.png?bf722"></span></th>
+            <td id="molten">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Adamantite Ore <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a1/Adamantite_ore.png?54faf"></span></th>
+            <td id="addyore">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Runite Ore <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a0/Runite_ore.png?ae8da"></span></th>
+            <td id="runeore">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Wine of Zamorak <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/ca/Wine_of_zamorak.png?4819a"></span></th>
+            <td id="zammywine">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Potato Cactus <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/5/56/Potato_cactus.png?fb31b"></span></th>
+            <td id="potatocactus">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grimy Cadantine <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/9/9c/Grimy_cadantine.png?4b595"></span></th>
+            <td id="cadantine">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grimy Avantoe <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/d/d5/Grimy_avantoe.png?4b595"></span></th>
+            <td id="avantoe">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grimy Toadflax <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/c6/Grimy_toadflax.png?dd8a6"></span></th>
+            <td id="toadflax">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grimy Kwuarm <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/c0/Grimy_kwuarm.png?61e80"></span></th>
+            <td id="kwuarm">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grimy Irit <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/d/d8/Grimy_irit_leaf.png?9edbf"></span></th>
+            <td id="irit">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grimy Ranarr <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/cf/Grimy_ranarr_weed.png?cf6f1"></span></th>
+            <td id="ranarr">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grimy Snapdragon <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/0/00/Grimy_snapdragon.png?cf6f1"></span></th>
+            <td id="snapdragon">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grimy Lantadyme <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/5/5a/Grimy_lantadyme.png?61e80"></span></th>
+            <td id="lantadyme">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grimy Dwarf Weed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/cc/Grimy_dwarf_weed.png?4b595"></span></th>
+            <td id="dwarf">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grimy Torstol <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/3/32/Grimy_torstol.png?dd8a6"></span></th>
+            <td id="torstol">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Battlestaff <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/ce/Battlestaff.png?c04bc"></span></th>
+            <td id="bstaff">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Mahogany Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/d/db/Mahogany_seed_5.png?2a71a"></span></th>
+            <td id="mahoganyseed">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Battleaxe <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/f/f5/Rune_battleaxe.png?77c81"></span></th>
+            <td id="runebaxe">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Platebody <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/7c/Rune_platebody.png?3666d"></span></th>
+            <td id="runeplate">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Chainbody <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/9/9f/Rune_chainbody.png?95940"></span></th>
+            <td id="runechain">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Palm Tree Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/b/b2/Palm_tree_seed_5.png?9afdd"></span></th>
+            <td id="palm">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Yew Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/6e/Yew_seed_5.png?eb8e4"></span></th>
+            <td id="yewseed">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Magic Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/4/4d/Magic_seed_5.png?db296"></span></th>
+            <td id="magicseed">0</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="padding-7 row">
+        <div class="col">
+            <div class="form-check padding-2-7">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Regular Theatre of Blood
+                </label>
+            </div>
+            <div class="form-check padding-2-7">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioStoryMode" disabled>
+                <label class="form-check-label" for="flexRadioStoryMode">
+                    Story Theatre of Blood [COMING WHEN RATES FOUND]
+                </label>
+            </div>
+            <div class="form-check padding-2-7">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioHardMode" disabled>
+                <label class="form-check-label" for="flexRadioHardMode">
+                    Hard Theatre of Blood [COMING WHEN RATES FOUND]
+                </label>
+            </div>
+            <div class="padding-2-7"><input id="killNum" type="number" max="10000" min="1"></div>
+            <div class="padding-2-7"><button onclick="updateTable(['zik', 'elite', 'avernic', 'rapier', 'sang',
+                'faceguard', 'chestguard', 'legguards', 'scythe', 'dust',
+                'sangorn', 'holyorn', 'vialblood', 'death', 'bloodrune',
+                'swamptar', 'coal', 'gold', 'molten', 'addyore',
+                'runeore', 'zammywine', 'potatocactus', 'cadantine', 'avantoe',
+                'toadflax', 'kwuarm', 'irit', 'ranarr', 'snapdragon',
+                'lantadyme', 'dwarf', 'torstol', 'bstaff', 'mahoganyseed',
+                'runebaxe', 'runeplate', 'runechain', 'palm', 'yewseed', 'magicseed'], xTheatre, getKillNum)" class="btn btn-outline-warning simulate-btn">Simulate</button></div>
+        </div>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</body>
+</html>

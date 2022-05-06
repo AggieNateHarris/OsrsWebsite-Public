@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!--  boostrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+    <!--google fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}" />
+    <script src="{% static 'xkills/xKillsSarachnis.js' %}"></script>
+
+    <title>SimulationScape - Simulations</title>
+</head>
+<body>
+
+<!--login area-->
+<section id="login-area">
+    <div class="login-field container">
+<!--        <form action="{% url 'home:home' %}" method="post">-->
+<!--            {% csrf_token %}-->
+<!--            <div class="row">-->
+<!--                <div class="col-lg-3 col-sm-12">-->
+<!--                    <div class="frontpage-title">SimulationScape</div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-4 col-md-12 ms-auto">-->
+<!--                    <div class="justify-right"><input id="login" name="usernametext" type="text"/>Username</div>-->
+<!--                    <div class="justify-right"><input class="login-box" id="password" name="passwordtext" type="password"/> Password</div>-->
+<!--                    <div class="justify-right">-->
+<!--                        <button class="btn btn-outline-warning" type="submit">Login</button>-->
+<!--                        <a class="register-button btn btn-outline-warning" href="{% url 'home:register' %}">Create Account</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="five-border"><a class="nav-link btn btn-outline-warning" href="{% url 'home:simulations' %}">Simulations</a></div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="five-border"><a class="nav-link btn btn-outline-warning" href="">Calculators</a></div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="five-border"><a class="nav-link btn btn-outline-warning" href="{% url 'home:about' %}">About</a></div>
+                </div>
+            </div>
+<!--        </form>-->
+    </div>
+</section>
+
+<!-- calculator area -->
+<section>
+    <h2 class="padding-4-7">
+        With this simulator you are able to simulate x kills of Sarachnis. This simulator literally
+        rolls on a loot table with the approximated rates from the wiki. This
+        simulator isn't going to necessarily give you the average, or likely, results from x kills.
+        Because it is rolling just as it would in-game it is possible, but unlikely, to get rare
+        abnormal results; just like in-game.
+        <br><br>
+        Max 20,000, min 1
+    </h2>
+    <table class="table">
+        <thread>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Count</th>
+            </tr>
+        </thread>
+        <tbody>
+        <tr>
+            <th scope="row">Sraracha <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/d/d6/Sraracha.png?fe066"></span></th>
+            <td id="pet" class="Snakeling">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Elite Clue <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a5/Clue_scroll_%28elite%29.png?e29cd"></span></th>
+            <td id="elite" class="Jar">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Hard Clue <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/7c/Clue_scroll_%28hard%29.png?e29cd"></span></th>
+            <td id="hard" class="tanzMut">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Jar of Eyes <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/5/58/Jar_of_eyes.png?72625"></span></th>
+            <td id="jar" class="magMut">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Giant Egg Sac(full) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/2/2b/Giant_egg_sac%28full%29.png?b0182"></span></th>
+            <td id="eggsac" class="tanzFang">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grubby Key <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/2/28/Grubby_key.png?72625"></span></th>
+            <td id="grubby" class="magicFang">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Dragon Med Helm <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/cf/Dragon_med_helm.png?7c889"></span></th>
+            <td id="dragonmed" class="serpVisage">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Sarachnis Cudgel <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/2/20/Sarachnis_cudgel.png?48053"></span></th>
+            <td id="cudgel" class="onyx">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Battlestaff <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/c/c7/Battlestaff_detail.png/120px-Battlestaff_detail.png?c5b58"></span></th>
+            <td id="bstaff" class="bstaff">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Platebody <span><img class="https://oldschool.runescape.wiki/images/7/7c/Rune_platebody.png?3666d"></span></th>
+            <td id="runeplate" class="dmed">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Med Helm <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/c9/Rune_med_helm.png?95940"></span></th>
+            <td id="runemed" class="dhally">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune 2h <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/8/8c/Rune_2h_sword.png?f92c8"></span></th>
+            <td id="rune2h" class="death">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Blood Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/2/2a/Blood_rune.png?9dc50"></span></th>
+            <td id="blood" class="law">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Chaos Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/a/ae/Chaos_rune_detail.png/120px-Chaos_rune_detail.png?9379c"></span></th>
+            <td id="chaos" class="chaos">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Cosmic Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/ae/Cosmic_rune.png?25f9c"></span></th>
+            <td id="cosmic" class="snapdragon">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Death Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/5/55/Death_rune.png?090cd"></span></th>
+            <td id="death" class="dwarfWeed">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Soul Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/9/9b/Soul_rune.png?6941a"></span></th>
+            <td id="soul" class="toadflax">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Mithril Arrow <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/0/09/Mithril_arrow_5.png?bb85d"></span></th>
+            <td id="mithrilarrow" class="torstol">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Mithril Bolts <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/e/ea/Mithril_bolts_5.png?34418"></span></th>
+            <td id="mithrilbolts" class="palmseed">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Maple Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/5/56/Maple_seed_5.png?ee59d"></span></th>
+            <td id="maple" class="papaya">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Papaya Tree Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a7/Papaya_tree_seed_5.png?7574f"></span></th>
+            <td id="papaya" class="calquat">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Yew Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/2/24/Toadflax_seed_5.png?1b73b"></span></th>
+            <td id="yew" class="magicseed">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Toadflax Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/6/6e/Herb_seed_detail.png/140px-Herb_seed_detail.png?e2d5a"></span></th>
+            <td id="toadflaxseed" class="toadflaxseed">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Snapdragon Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/6/6e/Herb_seed_detail.png/140px-Herb_seed_detail.png?e2d5a"></span></th>
+            <td id="snapdragonseed" class="snapdragonseed">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Dwarf Weed Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/6/6e/Herb_seed_detail.png/140px-Herb_seed_detail.png?e2d5a"></span></th>
+            <td id="dwarfseed" class="dwarfseed">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Torstol Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/6/6e/Herb_seed_detail.png/140px-Herb_seed_detail.png?e2d5a"></span></th>
+            <td id="torstolseed" class="torstolseed">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Irit Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/6/6e/Herb_seed_detail.png/140px-Herb_seed_detail.png?e2d5a"></span></th>
+            <td id="irit" class="spiritseed">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Belladonna Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/5/50/Belladonna_seed_5.png?d0f66"></span></th>
+            <td id="belladonna" class="snakeskin">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Poison Ivy Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/77/Poison_ivy_seed_5.png?a5454"></span></th>
+            <td id="poison" class="runeore">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Avantoe Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/5/56/Avantoe_seed_5.png?7e142"></span></th>
+            <td id="avantoe" class="pess">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Cactus Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/3/37/Cactus_seed_5.png?6461e"></span></th>
+            <td id="cactus" class="flax">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Potato Cactus Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/8/85/Potato_cactus_seed_5.png?49122"></span></th>
+            <td id="potatocactus" class="yewlog">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Kwuarm Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/c2/Kwuarm_seed_5.png?5ec8a"></span></th>
+            <td id="kwuarmseed" class="addybar">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Cadantine Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/63/Cadantine_seed_5.png?a6f47"></span></th>
+            <td id="cadantineseed" class="coal">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Lantadyme Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/63/Cadantine_seed_5.png?a6f47"></span></th>
+            <td id="lantadymeseed" class="dragonbones">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Snape Grass Seeds <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/cd/Snape_grass_seed_5.png?54446"></span></th>
+            <td id="snapegrassseeds" class="mahoganylogs">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grimy Kwuarm <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/c0/Grimy_kwuarm.png?61e80"></span></th>
+            <td id="grimykwuarm" class="zultele">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grimy Cadantine <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/9/9c/Grimy_cadantine.png?4b595"></span></th>
+            <td id="grimycadantine" class="manta">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grimy Dwarf Weed <span><img class="https://oldschool.runescape.wiki/images/c/cc/Grimy_dwarf_weed.png?4b595"></span></th>
+            <td id="grimydwarf" class="antidote">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grimy Avantoe <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/d/d5/Grimy_avantoe.png?4b595"></span></th>
+            <td id="grimyavantoe" class="dstonetips">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grimy Lantadyme <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/5/5a/Grimy_lantadyme.png?61e80"></span></th>
+            <td id="grimylantadyme" class="grapes">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grimy Ranarr Weed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/cf/Grimy_ranarr_weed.png?cf6f1"></span></th>
+            <td id="grimyranarr" class="coconut">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grimy Snapdragon <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/0/00/Grimy_snapdragon.png?cf6f1"></span></th>
+            <td id="grimysnapdragon" class="swamptar">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grimy Torstol <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/3/32/Grimy_torstol.png?dd8a6"></span></th>
+            <td id="grimytorstol" class="rare">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Mithril Ore <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/9/9a/Mithril_ore.png?42cd6"></span></th>
+            <td id="mithore">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Red Dragonhide <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/2/29/Red_dragonhide.png?90ecc"></span></th>
+            <td id="redhide">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Uncut Sapphire <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/77/Uncut_sapphire.png?c22e5"></span></th>
+            <td id="uncutsapphire">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Adamantite Ore <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a1/Adamantite_ore.png?54faf"></span></th>
+            <td id="addyore">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Uncut Emerald <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/c4/Uncut_emerald.png?5615c"></span></th>
+            <td id="uncutemerald">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Onyx Bolt Tips <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/68/Onyx_bolt_tips_5.png?3e70a"></span></th>
+            <td id="onyxtips">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Uncut Ruby <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/e/ec/Uncut_ruby.png?93d86"></span></th>
+            <td id="uncutruby">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Runite Ore <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a0/Runite_ore.png?ae8da"></span></th>
+            <td id="runeore">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Uncut Diamond <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/2/22/Uncut_diamond.png?1cefa"></span></th>
+            <td id="uncutdiamond">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Coins <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/3/30/Coins_10000.png?7fa38"></span></th>
+            <td id="coins">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Dragon Bones <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/63/Dragon_bones.png?61378"></span></th>
+            <td id="dragonbones">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Egg Potato <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/3/31/Egg_potato.png?23e5a"></span></th>
+            <td id="eggpotato">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Weapon Poison(++) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/64/Weapon_poison%28%2B%2B%29.png?a598c"></span></th>
+            <td id="weppoison">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Crystal Key <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/f/f6/Crystal_key.png?5e6ec"></span></th>
+            <td id="crystalkey">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Spider Carcass <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/7c/Spider_carcass.png?5be44"></span></th>
+            <td id="spidercarcass">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Gem Drop Table <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/f/fa/Gem_drop_table.png?23fd3"></span></th>
+            <td id="gemtable">0</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="padding-7 row">
+        <div class="col">
+            <div style="margin-bottom: 5px"><input id="killNum" type="number" max="20000" min="1"></div>
+            <div><button onclick="updateTable(['pet', 'elite', 'hard', 'jar', 'eggsac',
+                'grubby', 'dragonmed', 'cudgel', 'bstaff', 'runeplate',
+                'runemed', 'rune2h', 'blood', 'chaos', 'cosmic',
+                'death', 'soul', 'mithrilarrow', 'mithrilbolts', 'maple',
+                'papaya', 'yew', 'toadflaxseed', 'snapdragonseed', 'dwarfseed',
+                'torstolseed', 'irit', 'belladonna', 'poison', 'avantoe',
+                'cactus', 'potatocactus', 'kwuarmseed', 'cadantineseed', 'lantadymeseed',
+                'snapegrassseeds', 'grimykwuarm', 'grimycadantine', 'grimydwarf', 'grimyavantoe',
+                'grimylantadyme', 'grimyranarr', 'grimysnapdragon', 'grimytorstol', 'mithore',
+                'redhide', 'uncutsapphire', 'addyore', 'uncutemerald', 'onyxtips',
+                'uncutruby', 'runeore', 'uncutdiamond', 'coins', 'dragonbones',
+                'eggpotato', 'weppoison', 'crystalkey', 'spidercarcass', 'gemtable'], xSarachnis, getKillNum)" class="btn btn-outline-warning simulate-btn">Simulate</button></div>
+        </div>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</body>
+</html>

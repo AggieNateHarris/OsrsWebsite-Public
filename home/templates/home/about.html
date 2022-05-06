@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!--  boostrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+    <!--google fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}" />
+
+    <title>SimulationScape - About</title>
+</head>
+
+    <body>
+
+        <section id="login-area">
+            <div class="login-field container">
+<!--                <form action="{% url 'home:home' %}" method="post">-->
+<!--                    {% csrf_token %}-->
+<!--                    <div class="row">-->
+                        <div class="col-lg-3 col-sm-12">
+                            <div class="frontpage-title">SimulationScape</div>
+                        </div>
+<!--                        <div class="col-lg-4 col-md-12 ms-auto">-->
+<!--                            <div class="justify-right"><input id="login" name="usernametext" type="text"/>Username</div>-->
+<!--                            <div class="justify-right"><input class="login-box" id="password" name="passwordtext" type="password"/> Password</div>-->
+<!--                            <div class="justify-right">-->
+<!--                                <button class="btn btn-outline-warning" type="submit">Login</button>-->
+<!--                                <a class="register-button btn btn-outline-warning" href="{% url 'home:register' %}">Create Account</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="five-border"><a class="nav-link btn btn-outline-warning" href="{% url 'home:home' %}">HomePage</a></div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="five-border"><a class="nav-link btn btn-outline-warning" href="{% url 'home:calculators' %}">Calculators</a></div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="five-border"><a class="nav-link btn btn-outline-warning" href="{% url 'home:simulations' %}">Simulations</a></div>
+                        </div>
+                    </div>
+<!--                </form>-->
+            </div>
+        </section>
+
+        <section id="goal-message">
+            <div class="padding-4-7 col-md-6 col-sm-12"><h1>SimulationScape Goal</h1></div>
+
+
+            <div class="row">
+
+                <div class="padding-4-7 col-md-6 col-sm-12 medium-paragraph">
+                    The goal of SimulationScape is to give players helpful tools and insight into Old School Runescape,
+                the game that we all love. The initial tools that I'm intending to create are tools that help satisfy
+                curiosity; ever wanted to know the total loot you would get from 10,000 zulrah kills? Cox? A simulation
+                that rolls on their loot tables as many times as you want is one such tool. Not only will it satisfy
+                curiosity but it can be helpful in estimating certain loot that you will get from various bosses.
+                </div>
+
+                <div class="padding-4-7 col-md-6 col-sm-12">
+                    <img class="medium-image" src="{% static 'home/toomanyitems.jpg' %}">
+                </div>
+
+            </div>
+        </section>
+
+        <section id="about-me">
+            <div class="padding-4-7 col-md-6 col-sm-12"><h1>About Me</h1></div>
+
+            <div class="row">
+
+                <div class="padding-2-7 col-md-6 col-sm-12">
+                    <img class="medium-image" src="{% static 'home/maxtotal.png' %}">
+                    <img class="medium-image" src="{% static 'home/record b gloves time.png' %}">
+                    <img class="medium-image" src="{% static 'home/99rcrank63.png' %}">
+                </div>
+
+                <div class="padding-4-7 col-md-6 col-sm-12 medium-paragraph">
+                    Hi! My name is Nate and I've been playing runescape for over 10 years. I began back in middle
+                    school when my friends found the game on miniclip and we all spent countless hours exploring
+                    and enjoying the MMO experience that was completely new to us. Fast forward some years and
+                    old school was released, I had grown tired of the original runescape and jumped onto osrs
+                    the first day it launched.
+                    <br><br>
+                    I spent my years in the original rs as a pker but began making the switch to a skiller around
+                    the time of osrs being released. Initially in osrs my goal was to make a 'piety pure' and I
+                    was the first person to have the 60 att 70 def piety build in old school runescape. I always
+                    enjoyed runecrafting and it was how I made my money and I began doing other skills, I was one
+                    of the first people in osrs to get 91 rc for the best money at the time, double nature runes.
+                    I consistently held around rank 100-200 area in the overall highscores for the first 3 years
+                    or so of osrs while working a job. With my best overall ranks being around rank 60. I was around
+                    the 130th person to max total level in osrs. I held the record play time for achieving barrows gloves
+                    for a period, taking just 28 hours 33 minutes from a brand new account to having completed
+                    Recipe For Disaster.
+                    <br><br>
+                    Since the original runescape I've been making videos and really focusing on it more at the
+                    beginning of osrs as I began to really compete for ranks and firsts, unlike I ever had in
+                    the original runescape. My videos focused mostly on my progress through the game, guides,
+                    pking, and game updates.
+                    <br><br>
+                    I went to university for computer science and that's where my focus is currently.
+                    I don't have as much time to play anymore but I still
+                    enjoy spreading the knowledge of the game that I gained over the years and thousands upon
+                    thousands of hours of playing the game.
+                </div>
+
+                <div class="padding-2-7 col-md-12 justify-center">
+                    <iframe width="540px" height="360px" src="https://www.youtube.com/embed/m2Z7rwNcs04"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="other-me">
+            <div class="row">
+
+                <div class="padding-4-7 col-md-6 col-sm-12 medium-paragraph">
+                    I've been making osrs videos on youtube since the game's launch, if you're
+                    interested in seeing my content you can check out these links! My osrs youtube
+                    username is n0thinglasts1. I also have a twitch account with the username
+                    n0thinglasts1. I've also self published a couple epic fantasy novels with
+                    the links below to those, found at the Bookpatch and Amazon. I have a youtube
+                    channel dedicated to real life content that you can also check out. If you found
+                    this website to be helpful and you wish to support me please consider
+                    purchasing one of my books / donating / checking out my channels!
+                    <br>
+                    <br>
+                    Real Life Youtube Channel
+                    <br>
+                    <a href="https://www.youtube.com/channel/UCNbU-PGvXImuIC4lOrjE8WQ"><img class="small-image padding-5px" src="{% static 'home/real yt image.jpg' %}"></a>
+                    <br>
+                    <br>
+                    Instagram
+                    <br>
+                    <a href="https://www.instagram.com/nate.adventure/"><img class="small-image padding-5px" src="{% static 'home/instagram image.jpg' %}"></a>
+                </div>
+
+                <div class="padding-2-7 col-md-6 col-sm-12">
+                    <a href="https://www.youtube.com/channel/UCcDDNwYBQXgrdgUY1Li_k5g"><img class="small-image padding-5px" src="{% static 'home/fishing guide thumb 2021.png' %}"></a>
+                    <a href="https://streamlabs.com/n0thinglasts1"><img class="small-image padding-5px" src="{% static 'home/donate image.png' %}"></a>
+                    <a href="https://www.amazon.com/Unrelenting-Soul-Nathan-Harris/dp/B0959BG3XH/ref=sr_1_1?dchild=1&keywords=unrelenting+soul&qid=1624149604&s=books&sr=1-1"><img class="small-image padding-5px" src="{% static 'home/Book2cover.jpg' %}"></a>
+                </div>
+
+            </div>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    </body>
+</html>

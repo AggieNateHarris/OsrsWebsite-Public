@@ -1,0 +1,200 @@
+/*Front page log in*/
+h1 {
+	font-size: 4rem;
+}
+
+#login-area {
+	background-color: #202020;
+}
+
+.login-field {
+	padding-top: 20px;
+}
+
+.login-padding {
+	padding: 5px 5px;
+}
+
+.justify-right {
+	text-align: end;
+	padding: 5px;
+}
+
+.btn-outline-warning {
+	color: #f0e130;
+}
+
+.login-box {
+	background-color: tan;
+}
+
+.register-button {
+	margin-left: 5px;
+}
+
+/* Navbar styling */
+.frontpage-title {
+	font-size: 4rem;
+	z-index: 2;
+	font-weight: bold;
+	position: relative;
+	right: 150px;
+}
+
+.nav-link {
+	color: #f0e130;
+	font-size: 2rem;
+	z-index: 2;
+	margin-bottom: 8px;
+}
+
+#carousel-area {
+	z-index: -1;
+}
+
+/* Frontpage content */
+#frontpage-carousel {
+	border-top: 20px;
+}
+
+.image-stretch-to-screen {
+	width: 100%;
+}
+
+/*x-kills section*/
+#x-kills {
+	background-color: slategray;
+	padding: 7%;
+}
+
+#x-item {
+	background-color: #202020;
+	padding: 7%;
+}
+
+#x-xp {
+	background-color: slategray;
+	padding: 7%;
+}
+
+#goal-message {
+	background-color: slategray;
+}
+
+#about-me {
+	background-color: #202020;
+}
+
+#other-me {
+	background-color: slategray;
+}
+
+#master-farmer-tables {
+	background-color: slategray;
+}
+
+#ardy-knight-tables {
+	background-color: #202020;
+}
+
+#tzhaar-tables {
+	background-color: slategray;
+}
+
+.background-slategrey {
+	background-color: slategray;
+}
+
+.table-display {
+	display:table;
+}
+
+.dropdown {
+	text-align: center;
+}
+
+.dropdown-menu {
+	max-height: 400px;
+	overflow-y: auto;
+}
+
+.justify-center {
+	text-align: center;
+}
+
+.padding-7 {
+	padding: 7%;
+}
+
+.padding-5px {
+	padding: 5px;
+}
+
+.padding-4-7 {
+	padding: 4% 7%;
+}
+
+.padding-2-7 {
+	padding: 2% 7%;
+}
+
+.padding-right-10px {
+	padding-right: 10px;
+}
+
+.item-icon {
+	width: 35px;
+	height: 35px;
+	object-fit: contain;
+	margin-left: 5px;
+}
+
+.medium-paragraph {
+	font-size: 1.3rem;
+}
+
+.medium-image {
+	width: 100%;
+	min-width: 540px;
+	height: 30%;
+	min-height: 360px;
+	object-fit: contain;
+}
+
+.small-image {
+	width: 50%;
+	min-width: 270px;
+	height: auto;
+	min-height: auto;
+	object-fit: contain;
+}
+
+.simulate-btn {
+	font-size: 1.5rem;
+}
+
+body {
+	font-family: "Roboto";
+	font-weight: bold;
+	color: #f0e130;
+	background-color: #202020;
+}
+
+.text-alarm {
+	color: red;
+}
+
+.table {
+	color: #f0e130;
+	min-width: 200px;
+	width: 20%;
+	float:left;
+	margin: 2% 5%;
+}
+
+@media (max-width: 1600px) {
+	.frontpage-title {
+		position: relative;
+		right: 0px;
+	}
+}

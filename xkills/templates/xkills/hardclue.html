@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!--  boostrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+    <!--google fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}" />
+    <script src="{% static 'xkills/xKillsClues.js' %}"></script>
+
+    <title>SimulationScape - Simulations</title>
+</head>
+<body>
+
+<!--login area-->
+<section id="login-area">
+    <div class="login-field container">
+<!--        <form action="{% url 'home:home' %}" method="post">-->
+<!--            {% csrf_token %}-->
+<!--            <div class="row">-->
+                <div class="col-lg-3 col-sm-12">
+                    <div class="frontpage-title">SimulationScape</div>
+                </div>
+<!--                <div class="col-lg-4 col-md-12 ms-auto">-->
+<!--                    <div class="justify-right"><input id="login" name="usernametext" type="text"/>Username</div>-->
+<!--                    <div class="justify-right"><input class="login-box" id="password" name="passwordtext" type="password"/> Password</div>-->
+<!--                    <div class="justify-right">-->
+<!--                        <button class="btn btn-outline-warning" type="submit">Login</button>-->
+<!--                        <a class="register-button btn btn-outline-warning" href="{% url 'home:register' %}">Create Account</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="five-border"><a class="nav-link btn btn-outline-warning" href="{% url 'home:simulations' %}">Simulations</a></div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="five-border"><a class="nav-link btn btn-outline-warning" href="">Calculators</a></div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="five-border"><a class="nav-link btn btn-outline-warning" href="{% url 'home:about' %}">About</a></div>
+                </div>
+            </div>
+<!--        </form>-->
+    </div>
+</section>
+
+<!-- calculator area -->
+<section>
+    <h2 class="padding-4-7">
+        With this simulator you are able to simulate opening x hard clue caskets. This simulator literally
+        rolls on a loot table released by j-mods which can be found here:
+        <a href="https://docs.google.com/spreadsheets/d/16pVNHdZyynmxIbM9mynRDYT0LQsWxq-vbDs4_7DpnGM/edit#gid=1339011311">drop table</a>. This
+        simulator isn't going to necessarily give you the average, or likely, results from x caskets.
+        Because it is rolling just as it would in-game it is possible, but unlikely, to get rare
+        abnormal results; just like in-game.
+        <br><br>
+        Max 20,000, min 1
+    </h2>
+
+    <div class="padding-4-7 row">
+        <div class="col">
+            <div style="margin-bottom: 5px" class="justify-center"><input id="killNum" type="number" max="20000" min="1"></div>
+            <div class="justify-center"><button onclick="updateTable(['coins', 'lobster', 'shark', 'law', 'blood', 'nature', 'sweets', 'runelong', 'runefull', 'runelegs', 'runebaxe', 'runeaxe', 'runepick', 'runedagger', 'runeplate',
+'runeskirt', 'runekite', 'blackdchaps', 'blackdbody', 'magicshort', 'sarapage1', 'sarapage2', 'sarapage3', 'sarapage4', 'zammypage1', 'zammypage2',
+'zammypage3', 'zammypage4', 'guthixpage1', 'guthixpage2', 'guthixpage3', 'guthixpage4', 'bandospage1', 'bandospage2', 'bandospage3', 'bandospage4',
+'armadylpage1', 'armadylpage2', 'armadylpage3', 'armadylpage4', 'ancientpage1', 'ancientpage2', 'ancientpage3', 'ancientpage4', 'redlighter',
+'greenlighter', 'bluelighter', 'purplelighter', 'whitelighter', 'scrollbook', 'nardah', 'mosle', 'mortton', 'feldip', 'lunar', 'digsite', 'piscatoris',
+'pestcontrol', 'tai', 'lumberyard', 'chargedstone', 'elf', 'sarablessing', 'zammyblessing', 'guthixblessing', 'ancientblessing', 'bandosblessing',
+'armadylblessing', 'robin', 'platet', 'legst', 'skirtt', 'kitet', 'fullt', 'plateg', 'legsg', 'skirtg', 'kiteg', 'fullg', 'platez', 'legsz', 'skirtz', 'kitez',
+'fullz', 'plates', 'legss', 'skirts', 'kites', 'fulls', 'plateguthix', 'legsguthix', 'skirtguthix', 'kiteguthix', 'fullguthix', 'plateb', 'legsb', 'skirtb',
+'kiteb', 'fullb', 'platea', 'legsa', 'skirta', 'kitea', 'fulla', 'plateancient', 'legsancient', 'skirtancient', 'kiteancient', 'fullancient', 'tancav',
+'darkcav', 'blackcav', 'whitecav', 'redcav', 'navycav', 'piratehat', 'shield1', 'shield2', 'shield3', 'shield4', 'shield5', 'bluebodyg', 'bluechapsg',
+'bluebodyt', 'bluechapst', 'enchantedhat', 'enchantedtop', 'enchantedrobe', 'helm1', 'helm2', 'helm3', 'helm4', 'helm5', 'gloryt', 'zammycoif', 'zammybody',
+'zammychaps', 'zammybracers', 'zammyshield', 'zammyboots', 'guthixcoif', 'guthixbody', 'guthixchaps', 'guthixbracers', 'guthixshield', 'guthixboots',
+'saracoif', 'sarabody', 'sarachaps', 'sarabracers', 'sarashield', 'saraboots', 'bandoscoif', 'bandosbody', 'bandoschaps', 'bandosbracers', 'bandosshield',
+'bandosboots', 'armacoif', 'armabody', 'armachaps', 'armabracers', 'armashield', 'armaboots', 'ancientcoif', 'ancientbody', 'ancientchaps', 'ancientbracers',
+'ancientshield', 'ancientboots', 'zammycrozier', 'saracrozier', 'guthixcrozier', 'zammystole', 'sarastole', 'guthixstole', 'redbodyg', 'redchapsg',
+'redbodyt', 'redchapst', 'pith', 'explorer', 'greendmask', 'bluedmask', 'reddmask', 'blackdmask', 'zombie', 'nunchaku', 'cyclops', 'dbootorn', 'dualsai',
+'thieving', 'runedeforn', 'tzhaarorn', 'zerkorn', 'runecane', 'plate1', 'plate2', 'plate3', 'plate4', 'plate5', '3rdcoif', '3rdrangetop', '3rdrangelegs',
+'3rdvambs', '3rdrobetop', '3rdrobe', '3rdhat', '3rdamulet', '3rdhelm', '3rdplate', '3rdplatelegs', '3rdkite', '3rdplateskirt', 'superset', 'superenergy',
+'superrestore', 'antifire', 'gildfull', 'gildplate', 'gildlegs', 'gildskirt', 'gildkite', 'gildmed', 'gildchain', 'gildsquare', 'gild2h', 'gildspear',
+'gildhasta', 'magiclong', 'magiccompbow'],
+            xHardClues, getKillNum)" class="btn btn-outline-warning simulate-btn">Simulate</button></div>
+        </div>
+    </div>
+
+    <table class="table">
+        <thread>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Count</th>
+            </tr>
+        </thread>
+        <tbody>
+        <tr>
+            <th scope="row">Coins <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/6/63/Coins_detail.png/120px-Coins_detail.png?404bc"></span></th>
+            <td id="coins" class="coins">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Lobster <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/f/f7/Lobster_detail.png/150px-Lobster_detail.png?23474"></span></th>
+            <td id="lobster" class="lobster">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Shark <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/0/0b/Shark_detail.png/150px-Shark_detail.png?d7688"></span></th>
+            <td id="shark" class="shark">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Law Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/0/0f/Law_rune_detail.png/120px-Law_rune_detail.png?9e79a"></span></th>
+            <td id="law" class="law">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Blood Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/c/c1/Blood_rune_detail.png/120px-Blood_rune_detail.png?2cf9e"></span></th>
+            <td id="blood" class="blood">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Nature Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/e/ef/Nature_rune_detail.png/120px-Nature_rune_detail.png?9e79a"></span></th>
+            <td id="nature" class="nature">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Purple Sweets <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/5/50/Purple_sweets_detail.png/120px-Purple_sweets_detail.png?41120"></span></th>
+            <td id="sweets" class="sweets">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Longsword <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/9/9e/Rune_longsword_detail.png/120px-Rune_longsword_detail.png?6d359"></span></th>
+            <td id="runelong" class="runelong">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Full Helm <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/8/8c/Rune_full_helm_detail.png/120px-Rune_full_helm_detail.png?6348f"></span></th>
+            <td id="runefull" class="runefull">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Platelegs <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/1/1d/Rune_platelegs_detail.png/90px-Rune_platelegs_detail.png?fae21"></span></th>
+            <td id="runelegs" class="runelegs">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Battleaxe <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/d/d4/Rune_battleaxe_detail.png/130px-Rune_battleaxe_detail.png?60374"></span></th>
+            <td id="runebaxe" class="runebaxe">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Axe <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/e/e6/Rune_axe_detail.png/130px-Rune_axe_detail.png?5e68a"></span></th>
+            <td id="runeaxe" class="runeaxe">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Pickaxe <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/3/39/Rune_pickaxe_detail.png/130px-Rune_pickaxe_detail.png?ff943"></span></th>
+            <td id="runepick" class="runepick">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Dagger <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/6/60/Rune_dagger_detail.png/120px-Rune_dagger_detail.png?45f1e"></span></th>
+            <td id="runedagger" class="runedagger">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Platebody <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/7/72/Rune_platebody_detail.png/130px-Rune_platebody_detail.png?7052f"></span></th>
+            <td id="runeplate" class="runeplate">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Plateskirt <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/e/e0/Rune_plateskirt_detail.png/120px-Rune_plateskirt_detail.png?bc5e2"></span></th>
+            <td id="runeskirt" class="runeskirt">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Kiteshield <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/c/cb/Rune_kiteshield_detail.png/130px-Rune_kiteshield_detail.png?65fbe"></span></th>
+            <td id="runekite" class="runekite">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Black D'hide Chaps <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/9/90/Black_d%27hide_chaps_detail.png/70px-Black_d%27hide_chaps_detail.png?6838a"></span></th>
+            <td id="blackdchaps" class="blackdchaps">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Black D'hide Body <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/6/69/Black_d%27hide_body_detail.png/100px-Black_d%27hide_body_detail.png?ce75f"></span></th>
+            <td id="blackdbody" class="blackdbody">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Magic Shortbow <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/8/85/Magic_shortbow_detail.png/153px-Magic_shortbow_detail.png?8337c"></span></th>
+            <td id="magicshort" class="magcishort">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Saradomin Page 1 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/b/be/Saradomin_page_1_detail.png/130px-Saradomin_page_1_detail.png?9847d"></span></th>
+            <td id="sarapage1" class="sarapage1">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Saradomin Page 2 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/b/be/Saradomin_page_1_detail.png/130px-Saradomin_page_1_detail.png?9847d"></span></th>
+            <td id="sarapage2" class="sarapage2">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Saradomin Page 3 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/b/be/Saradomin_page_1_detail.png/130px-Saradomin_page_1_detail.png?9847d"></span></th>
+            <td id="sarapage3" class="sarapage3">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Saradomin Page 4 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/b/be/Saradomin_page_1_detail.png/130px-Saradomin_page_1_detail.png?9847d"></span></th>
+            <td id="sarapage4" class="sarapage4">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Zamorak Page 1 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/5/52/Zamorak_page_1_detail.png/130px-Zamorak_page_1_detail.png?66e6c"></span></th>
+            <td id="zammypage1" class="zammypage1">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Zamorak Page 2 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/5/52/Zamorak_page_1_detail.png/130px-Zamorak_page_1_detail.png?66e6c"></span></th>
+            <td id="zammypage2" class="zammypage2">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Zamorak Page 3 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/5/52/Zamorak_page_1_detail.png/130px-Zamorak_page_1_detail.png?66e6c"></span></th>
+            <td id="zammypage3" class="zammypage3">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Zamorak Page 4 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/5/52/Zamorak_page_1_detail.png/130px-Zamorak_page_1_detail.png?66e6c"></span></th>
+            <td id="zammypage4" class="zammypage4">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Guthix Page 1 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/1/15/Guthix_page_1_detail.png/130px-Guthix_page_1_detail.png?9847d"></span></th>
+            <td id="guthixpage1" class="guthixpage1">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Guthix Page 2 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/1/15/Guthix_page_1_detail.png/130px-Guthix_page_1_detail.png?9847d"></span></th>
+            <td id="guthixpage2" class="guthixpage2">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Guthix Page 3 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/1/15/Guthix_page_1_detail.png/130px-Guthix_page_1_detail.png?9847d"></span></th>
+            <td id="guthixpage3" class="guthixpage3">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Guthix Page 4 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/1/15/Guthix_page_1_detail.png/130px-Guthix_page_1_detail.png?9847d"></span></th>
+            <td id="guthixpage4" class="guthixpage4">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Bandos Page 1 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/4/45/Bandos_page_1_detail.png/130px-Bandos_page_1_detail.png?14ebd"></span></th>
+            <td id="bandospage1" class="bandospage1">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Bandos Page 2 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/4/45/Bandos_page_1_detail.png/130px-Bandos_page_1_detail.png?14ebd"></span></th>
+            <td id="bandospage2" class="bandospage2">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Bandos Page 3 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/4/45/Bandos_page_1_detail.png/130px-Bandos_page_1_detail.png?14ebd"></span></th>
+            <td id="bandospage3" class="bandospage3">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Bandos Page 4 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/4/45/Bandos_page_1_detail.png/130px-Bandos_page_1_detail.png?14ebd"></span></th>
+            <td id="bandospage4" class="bandospage4">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Armadyl Page 1 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/a/a2/Armadyl_page_1_detail.png/130px-Armadyl_page_1_detail.png?14ebd"></span></th>
+            <td id="armadylpage1" class="armadylpage1">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Armadyl Page 2 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/a/a2/Armadyl_page_1_detail.png/130px-Armadyl_page_1_detail.png?14ebd"></span></th>
+            <td id="armadylpage2" class="armadylpage2">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Armadyl Page 3 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/a/a2/Armadyl_page_1_detail.png/130px-Armadyl_page_1_detail.png?14ebd"></span></th>
+            <td id="armadylpage3" class="armadylpage3">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Armadyl Page 4 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/a/a2/Armadyl_page_1_detail.png/130px-Armadyl_page_1_detail.png?14ebd"></span></th>
+            <td id="armadylpage4" class="armadylpage4">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Ancient Page 1 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/9/9d/Ancient_page_1_detail.png/130px-Ancient_page_1_detail.png?59e9f"></span></th>
+            <td id="ancientpage1" class="ancientpage1">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Ancient Page 2 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/9/9d/Ancient_page_1_detail.png/130px-Ancient_page_1_detail.png?59e9f"></span></th>
+            <td id="ancientpage2" class="ancientpage2">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Ancient Page 3 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/9/9d/Ancient_page_1_detail.png/130px-Ancient_page_1_detail.png?59e9f"></span></th>
+            <td id="ancientpage3" class="ancientpage3">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Ancient Page 4 <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/9/9d/Ancient_page_1_detail.png/130px-Ancient_page_1_detail.png?59e9f"></span></th>
+            <td id="ancientpage4" class="ancientpage4">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Red Firelighter <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/3/39/Red_firelighter_detail.png/100px-Red_firelighter_detail.png?bccfb"></span></th>
+            <td id="redlighter" class="redlighter">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Green Firelighter <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/e/ed/Green_firelighter_detail.png/100px-Green_firelighter_detail.png?bccfb"></span></th>
+            <td id="greenlighter" class="greenlighter">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Blue Firelighter <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/e/e1/Blue_firelighter_detail.png/100px-Blue_firelighter_detail.png?42e2f"></span></th>
+            <td id="bluelighter" class="bluelighter">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Purple Firelighter <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/0/00/Purple_firelighter_detail.png/100px-Purple_firelighter_detail.png?bccfb"></span></th>
+            <td id="purplelighter" class="purplelighter">0</td>
+        </tr>
+        <tr>
+            <th scope="row">White Firelighter <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/2/2b/White_firelighter_detail.png/100px-White_firelighter_detail.png?45fa8"></span></th>
+            <td id="whitelighter" class="whitelighter">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Master Scroll Book <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/c/c9/Master_scroll_book_detail.png/160px-Master_scroll_book_detail.png?4a8ca"></span></th>
+            <td id="scrollbook" class="scrollbook">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Nardah Teleport <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/7/70/Nardah_teleport_detail.png/170px-Nardah_teleport_detail.png?c8bbf"></span></th>
+            <td id="nardah" class="nardah">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Mos Le'harmless Teleport <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/0/0f/Mos_le%27harmless_teleport_detail.png/170px-Mos_le%27harmless_teleport_detail.png?0470b"></span></th>
+            <td id="mosle" class="mosle">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Mortton Teleport <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/4/46/Mort%27ton_teleport_detail.png/170px-Mort%27ton_teleport_detail.png?1bf07"></span></th>
+            <td id="mortton" class="mortton">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Feldip Hills Teleport <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/7/7a/Feldip_hills_teleport_detail.png/170px-Feldip_hills_teleport_detail.png?853b6"></span></th>
+            <td id="feldip" class="feldip">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Lunar Isle Teleport <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/b/b5/Lunar_isle_teleport_detail.png/150px-Lunar_isle_teleport_detail.png?853b6"></span></th>
+            <td id="lunar" class="lunar">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Digsite Teleport <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/b/bf/Digsite_teleport_detail.png/170px-Digsite_teleport_detail.png?d808d"></span></th>
+            <td id="digsite" class="digsite">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Piscatoris Teleport <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/7/74/Piscatoris_teleport_detail.png/150px-Piscatoris_teleport_detail.png?19a96"></span></th>
+            <td id="piscatoris" class="piscatoris">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Pest Control Teleport <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/f/fb/Pest_control_teleport_detail.png/150px-Pest_control_teleport_detail.png?d8e92"></span></th>
+            <td id="pestcontrol" class="pestcontrol">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Tai Bwo Wannai Teleport <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/a/ab/Tai_bwo_wannai_teleport_detail.png/150px-Tai_bwo_wannai_teleport_detail.png?04867"></span></th>
+            <td id="tai" class="tai">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Lumberyard Teleport <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/b/b6/Lumberyard_teleport_detail.png/150px-Lumberyard_teleport_detail.png?d8e92"></span></th>
+            <td id="lumberyard" class="lumberyard">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Charge Dragonstone Scroll <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/c/c4/Charge_dragonstone_jewellery_scroll_detail.png/170px-Charge_dragonstone_jewellery_scroll_detail.png?504a4"></span></th>
+            <td id="chargedstone" class="chargedstone">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Elf Camp Teleport <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/8/8d/Iorwerth_camp_teleport_detail.png/170px-Iorwerth_camp_teleport_detail.png?1bf07"></span></th>
+            <td id="elf" class="elf">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Saradomin Blessing <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/4/42/Holy_blessing_detail.png/150px-Holy_blessing_detail.png?0470b"></span></th>
+            <td id="sarablessing" class="sarablessing">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Zamorak Blessing <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/d/d2/Unholy_blessing_detail.png/150px-Unholy_blessing_detail.png?04867"></span></th>
+            <td id="zammyblessing" class="zammyblessing">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Guthix Blessing <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/b/ba/Peaceful_blessing_detail.png/150px-Peaceful_blessing_detail.png?10d0e"></span></th>
+            <td id="guthixblessing" class="guthixblessing">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Ancient Blessing <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/d/d4/Ancient_blessing_detail.png/150px-Ancient_blessing_detail.png?998c1"></span></th>
+            <td id="ancientblessing" class="ancientblessing">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Bandos Blessing <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/a/a6/War_blessing_detail.png/150px-War_blessing_detail.png?04867"></span></th>
+            <td id="bandosblessing" class="bandosblessing">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Armadyl Blessing <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/d/d5/Honourable_blessing_detail.png/150px-Honourable_blessing_detail.png?1bf07"></span></th>
+            <td id="armadylblessing" class="armadylblessing">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Magic Longbow <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/a/a6/Magic_longbow_detail.png/110px-Magic_longbow_detail.png?cba81"></span></th>
+            <td id="magiclong">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Magic Composite Bow <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/2/20/Magic_comp_bow_detail.png/130px-Magic_comp_bow_detail.png?653c5"></span></th>
+            <td id="magiccompbow">0</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table">
+        <thread>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Count</th>
+            </tr>
+        </thread>
+        <tbody>
+        <tr>
+            <th scope="row">Robin Hood Hat <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/2/28/Robin_hood_hat_detail.png/150px-Robin_hood_hat_detail.png?3bce2"></span></th>
+            <td id="robin" class="robin">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Platebody(t) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/a/ae/Rune_platebody_%28t%29_detail.png/150px-Rune_platebody_%28t%29_detail.png?72ac5"></span></th>
+            <td id="platet" class="platet">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Platelegs(t) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/9/95/Rune_platelegs_%28t%29_detail.png/90px-Rune_platelegs_%28t%29_detail.png?fbb45"></span></th>
+            <td id="legst" class="legst">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Plateskirt(t) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/f/f2/Rune_plateskirt_%28t%29.png?ac554"></span></th>
+            <td id="skirtt" class="skirtt">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Kiteshield(t) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/d/db/Rune_kiteshield_%28t%29.png?6ff1e"></span></th>
+            <td id="kitet" class="kitet">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Full Helm(t) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/b/bf/Rune_full_helm_%28t%29.png?83907b"></span></th>
+            <td id="fullt" class="fullt">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Platebody(g) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/b/b5/Rune_platebody_%28g%29.png?6ff1e"></span></th>
+            <td id="plateg" class="plateg">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Platelegs(g) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/71/Rune_platelegs_%28g%29.png?ac554"></span></th>
+            <td id="legsg" class="legsg">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Plateskirt(g) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/78/Rune_plateskirt_%28g%29.png?ac554"></span></th>
+            <td id="skirtg" class="skirtg">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Kiteshield(g) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/4/49/Rune_kiteshield_%28g%29.png?6ff1e"></span></th>
+            <td id="kiteg" class="kiteg">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Full Helm(g) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/62/Rune_full_helm_%28g%29.png?83907"></span></th>
+            <td id="fullg">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Zamorak Platebody <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/4/4e/Zamorak_platebody.png?1a341"></span></th>
+            <td id="platez">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Zamorak Platelegs <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a5/Zamorak_platelegs.png?1a341"></span></th>
+            <td id="legsz">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Zammy Plateskirt <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/f/fc/Zamorak_plateskirt.png?b6b0e"></span></th>
+            <td id="skirtz" class="skirtz">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Zamorak Kiteshield <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/74/Zamorak_kiteshield.png?40acd"></span></th>
+            <td id="kitez">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Zamorak Full Helm <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/e/e5/Zamorak_full_helm.png?bc548"></span></th>
+            <td id="fullz">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Saradomin Platebody <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/4/4d/Saradomin_platebody.png?90c9a"></span></th>
+            <td id="plates">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Saradomin Platelegs <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/9/9b/Saradomin_platelegs.png?90c9a"></span></th>
+            <td id="legss">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Saradomin Plateskirt <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/5/51/Saradomin_plateskirt.png?92e9a"></span></th>
+            <td id="skirts">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Saradomin Kiteshield <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/3/33/Saradomin_kiteshield.png?8913e"></span></th>
+            <td id="kites">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Saradomin Full Helm <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/e/e4/Saradomin_full_helm.png?8913e"></span></th>
+            <td id="fulls">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Guthix Platebody <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/74/Guthix_platebody.png?c2062"></span></th>
+            <td id="plateguthix">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Guthix Platelegs <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/ae/Guthix_platelegs.png?1904f"></span></th>
+            <td id="legsguthix">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Guthix Plateskirt <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/5/5c/Guthix_plateskirt.png?1904f"></span></th>
+            <td id="skirtguthix">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Guthix Kiteshield <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/1/13/Guthix_kiteshield.png?c2062"></span></th>
+            <td id="kiteguthix">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Guthix Full Helm <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/4/4b/Guthix_full_helm.png?3a431"></span></th>
+            <td id="fullguthix">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Bandos Platebody <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/0/0b/Bandos_platebody.png?231df"></span></th>
+            <td id="plateb">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Bandos Platelegs <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/9/99/Bandos_platelegs.png?231df"></span></th>
+            <td id="legsb">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Bandos Plateskirt <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/0/04/Bandos_plateskirt.png?7e635"></span></th>
+            <td id="skirtb">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Bandos Kiteshield <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/69/Bandos_kiteshield.png?98cf4"></span></th>
+            <td id="kiteb">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Bandos Full Helm <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/8/85/Bandos_full_helm.png?98cf4"></span></th>
+            <td id="fullb">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Armadyl Platebody <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/f/ff/Armadyl_platebody.png?9cbf8"></span></th>
+            <td id="platea">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Armadyl Platelegs <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/0/07/Armadyl_platelegs.png?9cbf8"></span></th>
+            <td id="legsa">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Armadyl Plateskirt <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/d/d3/Armadyl_plateskirt.png?a9dad"></span></th>
+            <td id="skirta">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Armadyl Kiteshield <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/65/Armadyl_kiteshield.png?9cbf8"></span></th>
+            <td id="kitea">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Armadyl Full Helm <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/1/1a/Armadyl_full_helm.png?39974"></span></th>
+            <td id="fulla">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Ancient Platebody <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/5/57/Ancient_platebody.png?02d41"></span></th>
+            <td id="plateancient">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Ancient Platelegs <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/0/02/Ancient_platelegs.png?015a7"></span></th>
+            <td id="legsancient">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Ancient Plateskirt <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/e/e6/Ancient_plateskirt.png?015a7"></span></th>
+            <td id="skirtancient">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Ancient Kiteshield <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/1/1c/Ancient_kiteshield.png?cccfc"></span></th>
+            <td id="kiteancient">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Ancient Full Helm <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/c8/Ancient_full_helm.png?cccfc"></span></th>
+            <td id="fullancient">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Tan Cavalier <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/0/02/Tan_cavalier.png?c20d8"></span></th>
+            <td id="tancav">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Dark Cavalier <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a9/Dark_cavalier.png?9beda"></span></th>
+            <td id="darkcav">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Black Cavalier <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a7/Black_cavalier.png?75fac"></span></th>
+            <td id="blackcav">0</td>
+        </tr>
+        <tr>
+            <th scope="row">White Cavalier <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/c4/White_cavalier.png?bed8a"></span></th>
+            <td id="whitecav">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Red Cavalier <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/7f/Red_cavalier.png?0cdab"></span></th>
+            <td id="redcav">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Navy Cavalier <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/63/Navy_cavalier.png?74eb0"></span></th>
+            <td id="navycav">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Pirate Hat <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/4/4a/Pirate%27s_hat.png?8d04c"></span></th>
+            <td id="piratehat">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Shield(h1) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a6/Rune_shield_%28h1%29.png?9461f"></span></th>
+            <td id="shield1">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Shield(h2) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a6/Rune_shield_%28h1%29.png?9461f"></span></th>
+            <td id="shield2">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Shield(h3) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a6/Rune_shield_%28h1%29.png?9461f"></span></th>
+            <td id="shield3">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Shield(h4) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a6/Rune_shield_%28h1%29.png?9461f"></span></th>
+            <td id="shield4">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Shield(h5) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a6/Rune_shield_%28h1%29.png?9461f"></span></th>
+            <td id="shield5">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Blue D'hide Body(g) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/73/Blue_d%27hide_body_%28g%29.png?35a08"></span></th>
+            <td id="bluebodyg">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Blue D'hide Chaps(g) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/e/e7/Blue_d%27hide_chaps_%28g%29.png?32f01"></span></th>
+            <td id="bluechapsg">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Blue D'hide Body(t) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/8/8c/Blue_d%27hide_body_%28t%29.png?35a08"></span></th>
+            <td id="bluebodyt">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Blue D'hide Chaps(t) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/5/52/Blue_d%27hide_chaps_%28t%29.png?32f01"></span></th>
+            <td id="bluechapst">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Enchanted Hat <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/9/97/Enchanted_hat.png?3d2f6"></span></th>
+            <td id="enchantedhat">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Enchanted Top <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/d/da/Enchanted_top.png?50f6a"></span></th>
+            <td id="enchantedtop">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Enchanted Robe <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/d/d3/Enchanted_robe.png?50f6a"></span></th>
+            <td id="enchantedrobe">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Helm(h1) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/2/21/Rune_helm_%28h1%29.png?ae9fc"></span></th>
+            <td id="helm1">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Helm(h2) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/2/21/Rune_helm_%28h1%29.png?ae9fc"></span></th>
+            <td id="helm2">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Helm(h3) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/2/21/Rune_helm_%28h1%29.png?ae9fc"></span></th>
+            <td id="helm3">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Helm(h4) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/2/21/Rune_helm_%28h1%29.png?ae9fc"></span></th>
+            <td id="helm4">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Helm(h5) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/2/21/Rune_helm_%28h1%29.png?ae9fc"></span></th>
+            <td id="helm5">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Amulet of Glory(t) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/f/fe/Amulet_of_glory_%28t%29.png?ba571"></span></th>
+            <td id="gloryt">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Zamorak D'hide Coif <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/1/10/Zamorak_coif.png?8bb2f"></span></th>
+            <td id="zammycoif">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Zamorak D'hide Body <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/c8/Zamorak_d%27hide_body.png?bc548"></span></th>
+            <td id="zammybody">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Zamorak D'hide Chaps <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/7e/Zamorak_chaps.png?042c2"></span></th>
+            <td id="zammychaps">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Zamorak D'hide Bracers <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/0/0a/Zamorak_bracers.png?042c2"></span></th>
+            <td id="zammybracers">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Zamorak D'hide Shield <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/7a/Zamorak_d%27hide_shield.png?28a88"></span></th>
+            <td id="zammyshield">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Zamorak D'hide Boots <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/74/Zamorak_d%27hide_boots.png?26c24"></span></th>
+            <td id="zammyboots">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Guthix D'hide Coif <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/6c/Guthix_coif.png?0ed58"></span></th>
+            <td id="guthixcoif">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Guthix D'hide Body <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/3/3d/Guthix_d%27hide_body.png?3a431"></span></th>
+            <td id="guthixbody">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Guthix D'hide Chaps <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/6a/Guthix_chaps.png?0ed58"></span></th>
+            <td id="guthixchaps">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Guthix D'hide Bracers <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/8/82/Guthix_bracers.png?acf28"></span></th>
+            <td id="guthixbracers">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Guthix D'hide Shield <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/c4/Guthix_d%27hide_shield.png?ff3a4"></span></th>
+            <td id="guthixshield">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Guthix D'hide Boots <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/8/86/Guthix_d%27hide_boots.png?6df19"></span></th>
+            <td id="guthixboots">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Saradomin D'hide Coif <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/7b/Saradomin_coif.png?3c56a"></span></th>
+            <td id="saracoif">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Saradomin D'hide Body <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/0/04/Saradomin_d%27hide_body.png?3c56a"></span></th>
+            <td id="sarabody">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Saradomin D'hide Chaps <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/2/29/Saradomin_chaps.png?42ab8"></span></th>
+            <td id="sarachaps">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Saradomin D'hide Bracers <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/9/98/Saradomin_bracers.png?42ab8"></span></th>
+            <td id="sarabracers">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Saradomin D'hide Shield <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/0/0c/Saradomin_d%27hide_shield.png?c1763"></span></th>
+            <td id="sarashield">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Saradomin D'hide Boots <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/4/40/Saradomin_d%27hide_boots.png?49134"></span></th>
+            <td id="saraboots">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Bandos D'hide Coif <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/6c/Bandos_coif.png?b6878"></span></th>
+            <td id="bandoscoif">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Bandos D'hide Body <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a5/Bandos_d%27hide_body.png?98cf4"></span></th>
+            <td id="bandosbody">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Bandos D'hide Chaps <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/e/ec/Bandos_chaps.png?b6878"></span></th>
+            <td id="bandoschaps">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Bandos D'hide Bracers <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/7b/Bandos_bracers.png?8c98a"></span></th>
+            <td id="bandosbracers">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Bandos D'hide Shield <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/af/Bandos_d%27hide_shield.png?5d713"></span></th>
+            <td id="bandosshield">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Bandos D'hide Boots <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/d/da/Bandos_d%27hide_boots.png?d1199"></span></th>
+            <td id="bandosboots">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Armadyl D'hide Coif <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/f/f8/Armadyl_coif.png?39974"></span></th>
+            <td id="armacoif">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Armadyl D'hide Body <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/4/49/Armadyl_d%27hide_body.png?39974"></span></th>
+            <td id="armabody">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Armadyl D'hide Chaps <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/66/Armadyl_chaps.png?baf2a"></span></th>
+            <td id="armachaps">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Armadyl D'hide Bracers <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/ca/Armadyl_bracers.png?baf2a"></span></th>
+            <td id="armabracers">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Armadyl D'hide Shield <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/cb/Armadyl_d%27hide_shield.png?5d713"></span></th>
+            <td id="armashield">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Armadyl D'hide Boots <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/b/b0/Armadyl_d%27hide_boots.png?20509"></span></th>
+            <td id="armaboots">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Ancient D'hide Coif <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/c8/Ancient_coif.png?b3e2b"></span></th>
+            <td id="ancientcoif">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Ancient D'hide Body <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/b/b2/Ancient_d%27hide_body.png?cccfc"></span></th>
+            <td id="ancientbody">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Ancient D'hide Chaps <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/1/19/Ancient_chaps.png?b3e2b"></span></th>
+            <td id="ancientchaps">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Ancient D'hide Bracers <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/8/85/Ancient_bracers.png?ba571"></span></th>
+            <td id="ancientbracers">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Ancient D'hide Shield <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/2/2c/Ancient_d%27hide_shield.png?c9719"></span></th>
+            <td id="ancientshield">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Ancient D'hide Boots <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/e/e0/Ancient_d%27hide_boots.png?e3f94"></span></th>
+            <td id="ancientboots">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Zamorak Crozier <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/9/92/Zamorak_crozier.png?8bb2f"></span></th>
+            <td id="zammycrozier">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Saradomin Crozier <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/d/d0/Saradomin_crozier.png?3c56a"></span></th>
+            <td id="saracrozier">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Guthix Crozier <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/69/Guthix_crozier.png?3a431"></span></th>
+            <td id="guthixcrozier">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Zamorak Stole <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/0/0c/Zamorak_stole.png?b6b0e"></span></th>
+            <td id="zammystole">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Saradomin Stole <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/6e/Saradomin_stole.png?aae38"></span></th>
+            <td id="sarastole">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Guthix Stole <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/74/Guthix_stole.png?c6e31"></span></th>
+            <td id="guthixstole">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Red D'hide Body(g) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a6/Red_d%27hide_body_%28g%29.png?0cdab"></span></th>
+            <td id="redbodyg">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Red D'hide Chaps(g) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/8/85/Red_d%27hide_chaps_%28g%29.png?224f6"></span></th>
+            <td id="redchapsg">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Red D'hide Body(t) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/8/8c/Blue_d%27hide_body_%28t%29.png?35a08"></span></th>
+            <td id="redbodyt">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Red D'hide Chaps(t) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/5/52/Blue_d%27hide_chaps_%28t%29.png?32f01"></span></th>
+            <td id="redchapst">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Pith Helmet <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/ce/Pith_helmet.png?61d12"></span></th>
+            <td id="pith">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Explorer Backpack <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/0/06/Explorer_backpack.png?24bcd"></span></th>
+            <td id="explorer">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Green Dragon Mask <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/0/05/Green_dragon_mask.png?d5b40"></span></th>
+            <td id="greendmask">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Blue Dragon Mask <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/ce/Blue_dragon_mask.png?52216"></span></th>
+            <td id="bluedmask">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Red Dragon Mask <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/1/1b/Red_dragon_mask.png?d5b40"></span></th>
+            <td id="reddmask">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Black Dragon Mask <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/b/b6/Black_dragon_mask.png?52216"></span></th>
+            <td id="blackdmask">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Zombie Head <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/3/35/Zombie_head_%28Treasure_Trails%29.png?bf471"></span></th>
+            <td id="zombie">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Nunchaku <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/7d/Nunchaku.png?10b10"></span></th>
+            <td id="nunchaku">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Cyclops Head <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/9/9f/Cyclops_head.png?792cf"></span></th>
+            <td id="cyclops">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Dragon Boots Orn Kit <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/9/98/Dragon_boots_ornament_kit.png?81a25"></span></th>
+            <td id="dbootorn">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Dual Sai <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/67/Dual_sai.png?391fc"></span></th>
+            <td id="dualsai">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Thieving Bag <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/d/d2/Thieving_bag.png?4221b"></span></th>
+            <td id="thieving">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Defender Orn Kit <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/b/b1/Rune_defender_ornament_kit.png?24f68"></span></th>
+            <td id="runedeforn">0</td>
+        </tr>
+        <tr>
+            <th scope="row">TzHaar-Ket-Om Orn Kit <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/7a/Tzhaar-ket-om_ornament_kit.png?8f399"></span></th>
+            <td id="tzhaarorn">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Berserker Necklace Orn Kit <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/1/18/Berserker_necklace_ornament_kit.png?6255b"></span></th>
+            <td id="zerkorn">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Cane <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/1/16/Rune_cane.png?42a53"></span></th>
+            <td id="runecane">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Platebody(h1) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/63/Rune_platebody_%28h1%29.png?1ecb9"></span></th>
+            <td id="plate1">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Platebody(h2) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/e/e1/Rune_platebody_%28h2%29.png?0a156"></span></th>
+            <td id="plate2">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Platebody(h3) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/d/db/Rune_platebody_%28h3%29.png?0a156"></span></th>
+            <td id="plate3">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Platebody(h4) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/60/Rune_platebody_%28h4%29.png?1ecb9"></span></th>
+            <td id="plate4">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Platebody(h5) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/9/93/Rune_platebody_%28h5%29.png?0a156"></span></th>
+            <td id="plate5">0</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table">
+        <thread>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Count</th>
+            </tr>
+        </thread>
+        <tbody>
+        <tr>
+            <th scope="row">3rd Age Range Coif <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/1/1d/3rd_age_range_coif.png?e1e33"></span></th>
+            <td id="3rdcoif">0</td>
+        </tr>
+        <tr>
+            <th scope="row">3rd Age Range Top <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/8/80/3rd_age_range_top.png?96efa"></span></th>
+            <td id="3rdrangetop">0</td>
+        </tr>
+        <tr>
+            <th scope="row">3rd Age Range Legs <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/d/d0/3rd_age_range_legs.png?a6cee"></span></th>
+            <td id="3rdrangelegs" class="dracvisage">0</td>
+        </tr>
+        <tr>
+            <th scope="row">3rd Age Range Vambs <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/8/8d/3rd_age_vambraces.png?48ee3"></span></th>
+            <td id="3rdvambs">0</td>
+        </tr>
+        <tr>
+            <th scope="row">3rd Age Robe Top <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/0/08/3rd_age_robe_top.png?b2bbf"></span></th>
+            <td id="3rdrobetop">0</td>
+        </tr>
+        <tr>
+            <th scope="row">3rd Age Robe <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/3/3a/3rd_age_robe.png?739b6"></span></th>
+            <td id="3rdrobe">0</td>
+        </tr>
+        <tr>
+            <th scope="row">3rd Age Mage Hat <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/f/fc/3rd_age_mage_hat.png?1ca63"></span></th>
+            <td id="3rdhat" class="dracvisage">0</td>
+        </tr>
+        <tr>
+            <th scope="row">3rd Age Amulet <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/c1/3rd_age_amulet.png?7ee5d"></span></th>
+            <td id="3rdamulet">0</td>
+        </tr>
+        <tr>
+            <th scope="row">3rd Age Full Helmet <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a0/3rd_age_full_helmet.png?ba581"></span></th>
+            <td id="3rdhelm">0</td>
+        </tr>
+        <tr>
+            <th scope="row">3rd Age Platebody <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/4/47/3rd_age_platebody.png?64024"></span></th>
+            <td id="3rdplate">0</td>
+        </tr>
+        <tr>
+            <th scope="row">3rd Age Platelegs <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/76/3rd_age_platelegs.png?aa11c"></span></th>
+            <td id="3rdplatelegs">0</td>
+        </tr>
+        <tr>
+            <th scope="row">3rd Age Kiteshield <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/b/ba/3rd_age_kiteshield.png?f6709"></span></th>
+            <td id="3rdkite">0</td>
+        </tr>
+        <tr>
+            <th scope="row">3rd Age Plateskirt <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/2/2d/3rd_age_plateskirt.png?f9ecf"></span></th>
+            <td id="3rdplateskirt">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Super Set <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/7/7d/Super_potion_set_detail.png/150px-Super_potion_set_detail.png?bfb4a"></span></th>
+            <td id="superset">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Super Energy(4) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/1/1f/Super_energy%284%29_detail.png/120px-Super_energy%284%29_detail.png?73caf"></span></th>
+            <td id="superenergy">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Super Restore(4) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/7/79/Super_restore%284%29_detail.png/120px-Super_restore%284%29_detail.png?42240"></span></th>
+            <td id="superrestore">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Antifire(4) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/b/b2/Antifire_potion%284%29_detail.png/120px-Antifire_potion%284%29_detail.png?fffa6"></span></th>
+            <td id="antifire">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Gilded Full Helm <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/3/33/Gilded_full_helm.png?fddc5"></span></th>
+            <td id="gildfull">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Gilded Platebody <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/8/86/Gilded_platebody.png?cc4a9"></span></th>
+            <td id="gildplate">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Gilded Platelegs <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/60/Gilded_platelegs.png?cc4a9"></span></th>
+            <td id="gildlegs">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Gilded Plateskirt <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/af/Gilded_plateskirt.png?ffd2f"></span></th>
+            <td id="gildskirt">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Gilded Kiteshield <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/4/47/Gilded_kiteshield.png?fddc5"></span></th>
+            <td id="gildkite">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Gilded Med Helm <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/4/44/Gilded_med_helm.png?f20e8"></span></th>
+            <td id="gildmed">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Gilded Chainbody <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/c2/Gilded_chainbody.png?f20e8"></span></th>
+            <td id="gildchain">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Gilded Square Shield <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a9/Gilded_sq_shield.png?c3710"></span></th>
+            <td id="gildsquare">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Gilded 2h Sword <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/9/98/Gilded_2h_sword.png?91024"></span></th>
+            <td id="gild2h">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Gilded Spear <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/2/23/Gilded_spear.png?c3710"></span></th>
+            <td id="gildspear">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Gilded Hasta <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/74/Gilded_hasta.png?f20e8"></span></th>
+            <td id="gildhasta">0</td>
+        </tr>
+        </tbody>
+    </table>
+
+</section>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</body>
+</html>

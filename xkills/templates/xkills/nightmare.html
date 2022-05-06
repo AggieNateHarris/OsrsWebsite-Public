@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!--  boostrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+    <!--google fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}" />
+    <script src="{% static 'xkills/xKillsNightmare.js' %}"></script>
+
+    <title>SimulationScape - Simulations</title>
+</head>
+<body>
+
+<!--login area-->
+<section id="login-area">
+    <div class="login-field container">
+<!--        <form action="{% url 'home:home' %}" method="post">-->
+<!--            {% csrf_token %}-->
+<!--            <div class="row">-->
+                <div class="col-lg-3 col-sm-12">
+                    <div class="frontpage-title">SimulationScape</div>
+                </div>
+<!--                <div class="col-lg-4 col-md-12 ms-auto">-->
+<!--                    <div class="justify-right"><input id="login" name="usernametext" type="text"/>Username</div>-->
+<!--                    <div class="justify-right"><input class="login-box" id="password" name="passwordtext" type="password"/> Password</div>-->
+<!--                    <div class="justify-right">-->
+<!--                        <button class="btn btn-outline-warning" type="submit">Login</button>-->
+<!--                        <a class="register-button btn btn-outline-warning" href="{% url 'home:register' %}">Create Account</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="five-border"><a class="nav-link btn btn-outline-warning" href="{% url 'home:simulations' %}">Simulations</a></div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="five-border"><a class="nav-link btn btn-outline-warning" href="">Calculators</a></div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="five-border"><a class="nav-link btn btn-outline-warning" href="{% url 'home:about' %}">About</a></div>
+                </div>
+            </div>
+<!--        </form>-->
+    </div>
+</section>
+
+<!-- calculator area -->
+<section>
+    <h2 class="padding-4-7">
+        Solo Nightmare<br><br>
+        With this simulator you are able to simulate x kills of solo Nightmare. This simulator literally
+        rolls on a loot table with the approximated rates from the wiki. This
+        simulator isn't going to necessarily give you the average, or likely, results from x kills.
+        Because it is rolling just as it would in-game it is possible, but unlikely, to get rare
+        abnormal results; just like in-game.
+        <br><br>
+        Max 20,000, min 1
+        <br><br>
+        <div class="text-alarm">The COMMON drops may be slightly inaccurate, at the time of writing this all the wiki has is
+        the drop ranges for common drops but not the distribution rates, so this simulation assumes
+        that the drop ranges have a constant distribution, ie the max possible amount of a drop is just
+            as likely as the least amount of a drop.</div>
+    </h2>
+    <table class="table">
+        <thread>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Count</th>
+            </tr>
+        </thread>
+        <tbody>
+        <tr>
+            <th scope="row">Little Nightmare <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/7e/Little_nightmare.png?5abc0"></span></th>
+            <td id="nightmare" class="nightmare">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Elite Clue <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a5/Clue_scroll_%28elite%29.png?e29cd"></span></th>
+            <td id="elite" class="elite">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Jar of Dreams <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/d/df/Jar_of_dreams.png?0ed98"></span></th>
+            <td id="jar" class="jar">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Coins <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/3/30/Coins_10000.png?7fa38"></span></th>
+            <td id="coins" class="coins">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Nightmare Staff <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/e/eb/Nightmare_staff.png?c0457"></span></th>
+            <td id="staff" class="staff">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Inquisitor's Great Helm <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/3/3d/Inquisitor%27s_great_helm.png?c0457"></span></th>
+            <td id="inqhelm">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Inquisitor's Hauberk <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/cc/Inquisitor%27s_hauberk.png?1241c"></span></th>
+            <td id="inqplate">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Inquisitor's Plateskirt <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a5/Inquisitor%27s_plateskirt.png?c0457"></span></th>
+            <td id="inqskirt" class="runelong">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Inquisitor's Mace <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/7/7f/Inquisitor%27s_mace.png?c0457"></span></th>
+            <td id="inqmace" class="runekite">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Eldritch Orb <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/c6/Eldritch_orb.png?0ed98"></span></th>
+            <td id="eldritch" class="bstaff">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Harmonised Orb <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/d/db/Harmonised_orb.png?0ed98"></span></th>
+            <td id="harmonised" class="dbaxe">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Volatile Orb <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/0/0c/Volatile_orb.png?5abc0"></span></th>
+            <td id="volatile" class="dlong">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Adamant Arrow <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/6/63/Adamant_arrow_5.png?d0b33"></span></th>
+            <td id="addyarrow" class="dlegs">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Arrow <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/2/27/Rune_arrow_5.png?31136"></span></th>
+            <td id="runearrow" class="dskirt">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Death Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/5/55/Death_rune.png?090cd"></span></th>
+            <td id="death" class="death">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Cosmic Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/ae/Cosmic_rune.png?25f9c"></span></th>
+            <td id="cosmic" class="chaos">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Nature Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/8/88/Nature_rune.png?55b11"></span></th>
+            <td id="nature" class="greenhide">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Blood Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/2/2a/Blood_rune.png?9dc50"></span></th>
+            <td id="blood" class="redhide">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Soul Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/9/9b/Soul_rune.png?6941a"></span></th>
+            <td id="soul" class="blackhide">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Yew Logs <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/ae/Yew_logs.png?053a4"></span></th>
+            <td id="yewlogs" class="dragonbolts">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Magic Logs <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/2/20/Magic_logs.png?ff7aa"></span></th>
+            <td id="magiclogs" class="dtip">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Gold Ore <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/9/91/Gold_ore.png?5d60c"></span></th>
+            <td id="goldore" class="dstonetip">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Coal <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a7/Coal.png?0b396"></span></th>
+            <td id="coal" class="onyxtip">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Mithril Ore <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/9/9a/Mithril_ore.png?42cd6"></span></th>
+            <td id="mithrilore" class="runetip">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Adamantite Ore <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a1/Adamantite_ore.png?54faf"></span></th>
+            <td id="addyore" class="darrowtip">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grimy Cadantine <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/9/9c/Grimy_cadantine.png?4b595"></span></th>
+            <td id="cadantine" class="diamondtip">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Grimy Torstol <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/3/32/Grimy_torstol.png?dd8a6"></span></th>
+            <td id="torstol" class="emtips">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Uncut Emerald <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/c/c4/Uncut_emerald.png?5615c"></span></th>
+            <td id="emerald" class="rubytip">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Uncut Ruby <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/e/ec/Uncut_ruby.png?93d86"></span></th>
+            <td id="ruby" class="sapphiretip">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Pure Essence <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/a/a8/Pure_essence.png?a3f74"></span></th>
+            <td id="essence" class="snapdragonseed">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Shark <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/1/14/Shark.png?d26d2"></span></th>
+            <td id="shark" class="torstolseed">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Bass <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/b/bd/Bass.png?52aff"></span></th>
+            <td id="bass" class="ranarrseed">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Prayer Potion(3) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/0/07/Prayer_potion%283%29.png?f9b25"></span></th>
+            <td id="ppot" class="watermelonseed">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Saradomin Brew(3) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/b/b6/Saradomin_brew%283%29.png?8ae4e"></span></th>
+            <td id="sarabrew" class="willowseed">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Zamorak Brew(3) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/e/e5/Zamorak_brew%283%29.png?a60dd"></span></th>
+            <td id="zammybrew" class="mahogseed">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Sanfew Serum(3) <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/3/31/Sanfew_serum%283%29.png?9947e"></span></th>
+            <td id="sanfew" class="mapleseed">0</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="padding-7 row">
+        <div class="col">
+            <div style="margin-bottom: 5px"><input id="killNum" type="number" max="20000" min="1"></div>
+            <div><button onclick="updateTable(['nightmare', 'elite', 'jar', 'coins', 'staff', 'inqhelm', 'inqplate', 'inqskirt', 'inqmace', 'eldritch',
+                'harmonised', 'volatile', 'addyarrow', 'runearrow', 'death', 'cosmic', 'nature', 'blood', 'soul', 'yewlogs',
+                'magiclogs', 'goldore', 'coal', 'mithrilore', 'addyore', 'cadantine', 'torstol', 'emerald', 'ruby',
+                'essence', 'shark', 'bass', 'ppot', 'sarabrew', 'zammybrew', 'sanfew'],
+            xNightmare, getKillNum)" class="btn btn-outline-warning simulate-btn">Simulate</button></div>
+        </div>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</body>
+</html>

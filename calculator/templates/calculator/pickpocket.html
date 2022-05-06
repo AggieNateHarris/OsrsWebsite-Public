@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!--  boostrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+    <!--google fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}" />
+    <script src="{% static 'calculator/pickpocket.js' %}"></script>
+    <script src="{% static 'home/level-table.js' %}"></script>
+
+    <title>SimulationScape - Simulations</title>
+</head>
+<body>
+
+<!--login area-->
+<section id="login-area">
+    <div class="login-field container">
+<!--        <form action="{% url 'home:home' %}" method="post">-->
+<!--            {% csrf_token %}-->
+<!--            <div class="row">-->
+                <div class="col-lg-3 col-sm-12">
+                    <div class="frontpage-title">SimulationScape</div>
+                </div>
+<!--                <div class="col-lg-4 col-md-12 ms-auto">-->
+<!--                    <div class="justify-right"><input id="login" name="usernametext" type="text"/>Username</div>-->
+<!--                    <div class="justify-right"><input class="login-box" id="password" name="passwordtext" type="password"/> Password</div>-->
+<!--                    <div class="justify-right">-->
+<!--                        <button class="btn btn-outline-warning" type="submit">Login</button>-->
+<!--                        <a class="register-button btn btn-outline-warning" href="{% url 'home:register' %}">Create Account</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="five-border"><a class="nav-link btn btn-outline-warning" href="{% url 'home:simulations' %}">Simulations</a></div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="five-border"><a class="nav-link btn btn-outline-warning" href="{% url 'home:calculators' %}">Calculators</a></div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="five-border"><a class="nav-link btn btn-outline-warning" href="{% url 'home:about' %}">About</a></div>
+                </div>
+            </div>
+        <!-- </form> -->
+    </div>
+</section>
+
+<section id="explanation-info-gathering">
+    <h2 class="padding-4-7">
+        With this page the hope is to give you all of the important information regarding pickpocketing
+        the most commonly pickpocketed npcs. Specific level success rates are obtained from the osrs wiki where they were
+        found through a project of collecting a lot of data. When a desired endpoint is entered, the success rate
+        shown will be the average success rate over the duration of going from the start point to the end point. The loot
+        that is shown is loot obtained when the rogues outfit is worn for the 2x loot effect. It's assumed that shadow
+        veil is used every 40 seconds if it is being used at all. It is assumed tic perfect to get the rates shown, for
+        most people who are paying attention realistically you will likely get about 5% less for time constrained metrics,
+        such as exp/hr, picks/hr fails/hr, etc.
+    </h2>
+    <div class="medium-paragraph padding-2-7">
+        Please enter your current thieving level or exp, check the box for whether you're entering an exp value or level value.
+        You may also enter a desired thieving level or exp to get information regarding getting from your current thieving
+        to the desired thieving. Both the current and desired thieving must be of the same type, both level or both exp.
+        <div class="padding-5px"><input id="current-thiev-level" type="number" min="0"> Current Thieving</div>
+        <div class="padding-5px"><input id="desired-thiev-level" type="number" min="0" max="200000000"> Desired Thieving</div>
+        <div class="form-check">
+            <input class="form-check-input padding-5px padding-right-10px" type="radio" name="flexRadioDefault" id="level" checked>
+            <label class="form-check-label" for="level">
+                Thieving Level
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input padding-5px padding-right-10px" type="radio" name="flexRadioDefault" id="experience">
+            <label class="form-check-label" for="experience">
+                Thieving Experience
+            </label>
+        </div>
+        <div class="padding-5px"><input id="dodgy" type="checkbox"> Dodgy Necklace</div>
+        <div class="padding-5px"><input id="shadow-veil" type="checkbox"> Shadow Veil</div>
+        <div class="padding-5px"><input id="gloves" type="checkbox"> Gloves of Silence</div>
+        <div class="padding-5px"><input id="ardy" type="checkbox"> Ardy Hard Diary</div>
+        <div class="padding-5px"><input id="thiev-cape" type="checkbox"> Thieving Cape</div>
+
+        <div><button onclick="updateTable(settings, findDistribution, expToLevel, levelToExp)" class="btn btn-outline-warning simulate-btn"> Go! </button></div>
+    </div>
+</section>
+
+<section id="master-farmer-tables">
+    <div class="padding-2-7 table-display">
+        <h1>
+            Master Farmer Table
+        </h1>
+        <table class="table table-bordered">
+            <tbody>
+
+                <tr>
+                    <th scope="row">Successful Pickpockets Needed:</th>
+                    <td id="farm-success-picks">0</td>
+                    <th scope="row">Total Pickpockets Needed:</th>
+                    <td id="farm-total-picks">0</td>
+                    <th scope="row">Total Time(h):</th>
+                    <td id="farm-total-time">0</td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Success %:</th>
+                    <td id="farm-success-rate">0</td>
+                    <th scope="row">Total Fails:</th>
+                    <td id="farm-total-fails">0</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Exp/Hr:</th>
+                    <td id="farm-exp-rate">0</td>
+                    <th scope="row">Successful Picks/Hr</th>
+                    <td id="farm-picks-hr">0</td>
+                    <th scope="row">Failed Picks/Hr</th>
+                    <td id="farm-failed-picks-hr">0</td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Ranarr Seeds:</th>
+                    <td id="farm-ranarr-seeds">0</td>
+                    <th scope="row">Snapdragon Seeds:</th>
+                    <td id="farm-snapdragon-seeds">0</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Total Damage:</th>
+                    <td id="farm-total-damage">0</td>
+                    <th scope="row">Damage/Hr:</th>
+                    <td id="farm-damage-hr">0</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Base Regen:</th>
+                    <td>60</td>
+                    <th scope="row">2x Regen:</th>
+                    <td>120</td>
+                    <th scope="row">4x Regen:</th>
+                    <td>240</td>
+                </tr>
+
+                <tr>
+                    <th scope="row">Dodgy Necklaces:</th>
+                    <td id="farm-dodgy-used">0</td>
+                    <th scope="row">Gloves of Silence:</th>
+                    <td id="farm-gloves-used">0</td>
+                    <th scope="row">Shadow Veil:</th>
+                    <td id="farm-shadow-used">0</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section id="ardy-knight-tables">
+    <div class="padding-2-7 table-display">
+        <h1>
+            Ardy Knight Table
+        </h1>
+        <table class="table table-bordered">
+            <tbody>
+
+            <tr>
+                <th scope="row">Successful Pickpockets Needed:</th>
+                <td id="ardy-success-picks">0</td>
+                <th scope="row">Total Pickpockets Needed:</th>
+                <td id="ardy-total-picks">0</td>
+                <th scope="row">Total Time(h):</th>
+                <td id="ardy-total-time">0</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Success %:</th>
+                <td id="ardy-success-rate">0</td>
+                <th scope="row">Total Fails:</th>
+                <td id="ardy-total-fails">0</td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th scope="row">Exp/Hr:</th>
+                <td id="ardy-exp-rate">0</td>
+                <th scope="row">Successful Picks/Hr</th>
+                <td id="ardy-picks-hr">0</td>
+                <th scope="row">Failed Picks/Hr</th>
+                <td id="ardy-failed-picks-hr">0</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Coins:</th>
+                <td id="ardy-coins">0</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th scope="row">Total Damage:</th>
+                <td id="ardy-total-damage">0</td>
+                <th scope="row">Damage/Hr:</th>
+                <td id="ardy-damage-hr">0</td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th scope="row">Base Regen:</th>
+                <td>60</td>
+                <th scope="row">2x Regen:</th>
+                <td>120</td>
+                <th scope="row">4x Regen:</th>
+                <td>240</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Dodgy Necklaces:</th>
+                <td id="ardy-dodgy-used">0</td>
+                <th scope="row">Gloves of Silence:</th>
+                <td id="ardy-gloves-used">0</td>
+                <th scope="row">Shadow Veil:</th>
+                <td id="ardy-shadow-used">0</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section id="tzhaar-tables">
+    <div class="padding-2-7 table-display">
+        <h1>
+            Tzhaar-Hur Table
+        </h1>
+        <table class="table table-bordered">
+            <tbody>
+
+            <tr>
+                <th scope="row">Successful Pickpockets Needed:</th>
+                <td id="tzhaar-success-picks">0</td>
+                <th scope="row">Total Pickpockets Needed:</th>
+                <td id="tzhaar-total-picks">0</td>
+                <th scope="row">Total Time(h):</th>
+                <td id="tzhaar-total-time">0</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Success %:</th>
+                <td id="tzhaar-success-rate">0</td>
+                <th scope="row">Total Fails:</th>
+                <td id="tzhaar-total-fails">0</td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th scope="row">Exp/Hr:</th>
+                <td id="tzhaar-exp-rate">0</td>
+                <th scope="row">Successful Picks/Hr</th>
+                <td id="tzhaar-picks-hr">0</td>
+                <th scope="row">Failed Picks/Hr</th>
+                <td id="tzhaar-failed-picks-hr">0</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Tokkul:</th>
+                <td id="tzhaar-tokkul">0</td>
+                <th scope="row">Uncut Sapphire:</th>
+                <td id="tzhaar-sapphire">0</td>
+                <th scope="row">Uncut Emerald:</th>
+                <td id="tzhaar-emerald">0</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Uncut Ruby:</th>
+                <td id="tzhaar-ruby">0</td>
+                <th scope="row">Uncut Diamond:</th>
+                <td id="tzhaar-diamond">0</td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th scope="row">Total Damage:</th>
+                <td id="tzhaar-total-damage">0</td>
+                <th scope="row">Damage/Hr:</th>
+                <td id="tzhaar-damage-hr">0</td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th scope="row">Base Regen:</th>
+                <td>60</td>
+                <th scope="row">2x Regen:</th>
+                <td>120</td>
+                <th scope="row">4x Regen:</th>
+                <td>240</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Dodgy Necklaces:</th>
+                <td id="tzhaar-dodgy-used">0</td>
+                <th scope="row">Gloves of Silence:</th>
+                <td id="tzhaar-gloves-used">0</td>
+                <th scope="row">Shadow Veil:</th>
+                <td id="tzhaar-shadow-used">0</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section id="elf-tables">
+    <div class="padding-2-7 table-display">
+        <h1>
+            Elves Table
+        </h1>
+        <table class="table table-bordered">
+            <tbody>
+
+            <tr>
+                <th scope="row">Successful Pickpockets Needed:</th>
+                <td id="elf-success-picks">0</td>
+                <th scope="row">Total Pickpockets Needed:</th>
+                <td id="elf-total-picks">0</td>
+                <th scope="row">Total Time(h):</th>
+                <td id="elf-total-time">0</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Success %:</th>
+                <td id="elf-success-rate">0</td>
+                <th scope="row">Total Fails:</th>
+                <td id="elf-total-fails">0</td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th scope="row">Exp/Hr:</th>
+                <td id="elf-exp-rate">0</td>
+                <th scope="row">Successful Picks/Hr</th>
+                <td id="elf-picks-hr">0</td>
+                <th scope="row">Failed Picks/Hr</th>
+                <td id="elf-failed-picks-hr">0</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Coins:</th>
+                <td id="elf-coins">0</td>
+                <th scope="row">Crystal Shards:</th>
+                <td id="elf-shards">0</td>
+                <th scope="row">Enhanced Crystal Teleport Seeds:</th>
+                <td id="elf-enhanced-tele">0</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Total Damage:</th>
+                <td id="elf-total-damage">0</td>
+                <th scope="row">Damage/Hr:</th>
+                <td id="elf-damage-hr">0</td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th scope="row">Base Regen:</th>
+                <td>60</td>
+                <th scope="row">2x Regen:</th>
+                <td>120</td>
+                <th scope="row">4x Regen:</th>
+                <td>240</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Dodgy Necklaces:</th>
+                <td id="elf-dodgy-used">0</td>
+                <th scope="row">Gloves of Silence:</th>
+                <td id="elf-gloves-used">0</td>
+                <th scope="row">Shadow Veil:</th>
+                <td id="elf-shadow-used">0</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section id="vyre-tables">
+    <div class="padding-2-7 table-display">
+        <h1>
+            Vyre Table
+        </h1>
+        <table class="table table-bordered">
+            <tbody>
+
+            <tr>
+                <th scope="row">Successful Pickpockets Needed:</th>
+                <td id="vyre-success-picks">0</td>
+                <th scope="row">Total Pickpockets Needed:</th>
+                <td id="vyre-total-picks">0</td>
+                <th scope="row">Total Time(h):</th>
+                <td id="vyre-total-time">0</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Success %:</th>
+                <td id="vyre-success-rate">0</td>
+                <th scope="row">Total Fails:</th>
+                <td id="vyre-total-fails">0</td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th scope="row">Exp/Hr:</th>
+                <td id="vyre-exp-rate">0</td>
+                <th scope="row">Successful Picks/Hr</th>
+                <td id="vyre-picks-hr">0</td>
+                <th scope="row">Failed Picks/Hr</th>
+                <td id="vyre-failed-picks-hr">0</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Coins:</th>
+                <td id="vyre-coins">0</td>
+                <th scope="row">Blood Runes:</th>
+                <td id="vyre-bloods">0</td>
+                <th scope="row">Death Runes:</th>
+                <td id="vyre-deaths">0</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Blood Shards:</th>
+                <td id="vyre-blood-shards">0</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th scope="row">Total Damage:</th>
+                <td id="vyre-total-damage">0</td>
+                <th scope="row">Damage/Hr:</th>
+                <td id="vyre-damage-hr">0</td>
+                <td></td>
+                <td></td>
+            </tr>
+
+            <tr>
+                <th scope="row">Base Regen:</th>
+                <td>60</td>
+                <th scope="row">2x Regen:</th>
+                <td>120</td>
+                <th scope="row">4x Regen:</th>
+                <td>240</td>
+            </tr>
+
+            <tr>
+                <th scope="row">Dodgy Necklaces:</th>
+                <td id="vyre-dodgy-used">0</td>
+                <th scope="row">Gloves of Silence:</th>
+                <td id="vyre-gloves-used">0</td>
+                <th scope="row">Shadow Veil:</th>
+                <td id="vyre-shadow-used">0</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</body>
+</html>

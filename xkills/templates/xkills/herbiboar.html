@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!--  boostrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+    <!--google fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}" />
+    <script src="{% static 'xkills/xKillsHerbiboar.js' %}"></script>
+
+    <title>SimulationScape - Simulations</title>
+</head>
+<body>
+
+    <!--login area-->
+    <section id="login-area">
+        <div class="login-field container">
+<!--            <form action="{% url 'home:home' %}" method="post">-->
+<!--                {% csrf_token %}-->
+<!--                <div class="row">-->
+                    <div class="col-lg-3 col-sm-12">
+                        <div class="frontpage-title">SimulationScape</div>
+                    </div>
+<!--                    <div class="col-lg-4 col-md-12 ms-auto">-->
+<!--                        <div class="justify-right"><input id="login" name="usernametext" type="text"/>Username</div>-->
+<!--                        <div class="justify-right"><input class="login-box" id="password" name="passwordtext" type="password"/> Password</div>-->
+<!--                        <div class="justify-right">-->
+<!--                            <button class="btn btn-outline-warning" type="submit">Login</button>-->
+<!--                            <a class="register-button btn btn-outline-warning" href="{% url 'home:register' %}">Create Account</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="five-border"><a class="nav-link btn btn-outline-warning" href="{% url 'home:simulations' %}">Simulations</a></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="five-border"><a class="nav-link btn btn-outline-warning" href="">Calculators</a></div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="five-border"><a class="nav-link btn btn-outline-warning" href="{% url 'home:about' %}">About</a></div>
+                    </div>
+                </div>
+<!--            </form>-->
+        </div>
+    </section>
+
+    <!-- calculator area -->
+    <section>
+        <h2 class="padding-4-7">
+            With this simulator you are able to simulate x kills of herbiboar. This simulator literally
+            rolls on a loot table with the approximated rates from the wiki, assuming 99 herblore and magic
+            secateurs are used. This
+            simulator isn't going to necessarily give you the average, or likely, results from x kills.
+            Because it is rolling just as it would in-game it is possible, but unlikely, to get rare
+            abnormal results; just like in-game.
+            <br><br>
+            Max 15,000, min 1
+        </h2>
+        <table class="table">
+            <thread>
+                <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Count</th>
+                </tr>
+            </thread>
+            <tbody>
+                <tr>
+                    <th scope="row">Herbi Pet <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/6/64/Herbi_%28follower%29.png/250px-Herbi_%28follower%29.png?af968"></span></th>
+                    <td id="Herbi" class="Herbi">0</td>
+                </tr>
+                <tr>
+                    <th scope="row">Torstol <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/4/4c/Torstol_detail.png/170px-Torstol_detail.png?859ba"></span></th>
+                    <td id="Torstol" class="Torstol">0</td>
+                </tr>
+                <tr>
+                    <th scope="row">Dwarf Weed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/6/61/Dwarf_weed_detail.png/170px-Dwarf_weed_detail.png?194c8"></span></th>
+                    <td id="DwarfWeed" class="DwarfWeed">0</td>
+                </tr>
+                <tr>
+                    <th scope="row">Lantadyme <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/4/4c/Torstol_detail.png/170px-Torstol_detail.png?859ba"></span></th>
+                    <td id="Lantadyme" class="Lantadyme">0</td>
+                </tr>
+                <tr>
+                    <th scope="row">Cadantine <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/c/ce/Cadantine_detail.png/170px-Cadantine_detail.png?d6a6b"></span></th>
+                    <td id="Cadantine" class="Cadantine">0</td>
+                </tr>
+                <tr>
+                    <th scope="row">Snapdragon <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/3/3b/Snapdragon_detail.png/170px-Snapdragon_detail.png?f5526"></span></th>
+                    <td id="Snapdragon" class="Snapdragon">0</td>
+                </tr>
+                <tr>
+                    <th scope="row">Kwuarm <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/0/0a/Kwuarm_detail.png/170px-Kwuarm_detail.png?194c8"></span></th>
+                    <td id="Kwuarm" class="Kwuarm">0</td>
+                </tr>
+                <tr>
+                    <th scope="row">Avantoe <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/9/95/Avantoe_detail.png/170px-Avantoe_detail.png?209b3"></span></th>
+                    <td id="Avantoe" class="Avantoe">0</td>
+                </tr>
+                <tr>
+                    <th scope="row">Irit <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/6/68/Irit_leaf_detail.png/170px-Irit_leaf_detail.png?baf94"></span></th>
+                    <td id="Irit" class="Irit">0</td>
+                </tr>
+                <tr>
+                    <th scope="row">Ranarr <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/8/84/Ranarr_weed_detail.png/170px-Ranarr_weed_detail.png?9e257"></span></th>
+                    <td id="Ranarr" class="Ranarr">0</td>
+                </tr>
+                <tr>
+                    <th scope="row">Guam <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/9/98/Guam_leaf_detail.png/170px-Guam_leaf_detail.png?85d6d"></span></th>
+                    <td id="Guam" class="Guam">0</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="padding-7 row">
+            <div class="col">
+                <div style="margin-bottom: 5px"><input id="killNum" type="number" max="15000" min="1"></div>
+                <div><button onclick="updateTable(['Herbi', 'Torstol', 'DwarfWeed', 'Lantadyme', 'Cadantine', 'Snapdragon', 'Kwuarm', 'Avantoe', 'Irit',
+                'Ranarr', 'Guam'], xHerbiboar, getKillNum)" class="btn btn-outline-warning simulate-btn">Simulate</button></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</body>
+</html>

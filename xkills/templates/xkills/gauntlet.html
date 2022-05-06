@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!--  boostrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+    <!--google fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}" />
+    <script src="{% static 'xkills/xKillsGauntlet.js' %}"></script>
+
+    <title>SimulationScape - Simulations</title>
+</head>
+<body>
+
+<!--login area-->
+<section id="login-area">
+    <div class="login-field container">
+<!--        <form action="{% url 'home:home' %}" method="post">-->
+<!--            {% csrf_token %}-->
+<!--            <div class="row">-->
+                <div class="col-lg-3 col-sm-12">
+                    <div class="frontpage-title">SimulationScape</div>
+                </div>
+<!--                <div class="col-lg-4 col-md-12 ms-auto">-->
+<!--                    <div class="justify-right"><input id="login" name="usernametext" type="text"/>Username</div>-->
+<!--                    <div class="justify-right"><input class="login-box" id="password" name="passwordtext" type="password"/> Password</div>-->
+<!--                    <div class="justify-right">-->
+<!--                        <button class="btn btn-outline-warning" type="submit">Login</button>-->
+<!--                        <a class="register-button btn btn-outline-warning" href="{% url 'home:register' %}">Create Account</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="five-border"><a class="nav-link btn btn-outline-warning" href="{% url 'home:simulations' %}">Simulations</a></div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="five-border"><a class="nav-link btn btn-outline-warning" href="">Calculators</a></div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="five-border"><a class="nav-link btn btn-outline-warning" href="{% url 'home:about' %}">About</a></div>
+                </div>
+            </div>
+<!--        </form>-->
+    </div>
+</section>
+
+<!-- calculator area -->
+<section>
+    <h2 class="padding-4-7">
+        With this simulator you are able to simulate x kills of regular gauntlet. This simulator literally
+        rolls on a loot table with the approximated rates from the wiki. This
+        simulator isn't going to necessarily give you the average, or likely, results from x kills.
+        Because it is rolling just as it would in-game it is possible, but unlikely, to get rare
+        abnormal results; just like in-game.
+        <br><br>
+        Max 20,000, min 1
+    </h2>
+    <table class="table">
+        <thread>
+            <tr>
+                <th scope="col">Item</th>
+                <th scope="col">Count</th>
+            </tr>
+        </thread>
+        <tbody>
+        <tr>
+            <th scope="row">Youngllef <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/9/99/Youngllef_%28follower%29.png/280px-Youngllef_%28follower%29.png?fc90e"></span></th>
+            <td id="youngllef" class="youngllef">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Blade of Saeldor <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/2/27/Blade_of_saeldor_%28inactive%29_detail.png/140px-Blade_of_saeldor_%28inactive%29_detail.png?5b8a9"></span></th>
+            <td id="blade" class="blade">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Crystal Armour Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/1/17/Crystal_armour_seed_detail.png/120px-Crystal_armour_seed_detail.png?79a84"></span></th>
+            <td id="armourseed" class="armourseed">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Crystal Weapon Seed <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/7/70/Crystal_weapon_seed_detail.png/130px-Crystal_weapon_seed_detail.png?21958"></span></th>
+            <td id="weaponseed" class="weaponseed">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Coins <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/6/63/Coins_detail.png/120px-Coins_detail.png?404bc"></span></th>
+            <td id="coins" class="coins">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Battlestaff <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/c/c7/Battlestaff_detail.png/120px-Battlestaff_detail.png?c5b58"></span></th>
+            <td id="bstaff" class="bstaff">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Elite Clue Scroll <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/7/70/Clue_scroll_%28elite%29_detail.png/150px-Clue_scroll_%28elite%29_detail.png?87067"></span></th>
+            <td id="elite" class="elite">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Crystal Shards <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/f/f6/Crystal_shard_detail.png/120px-Crystal_shard_detail.png?f411b"></span></th>
+            <td id="shards" class="shards">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Full Helm <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/8/8c/Rune_full_helm_detail.png/120px-Rune_full_helm_detail.png?6348f"></span></th>
+            <td id="runefull" class="runefull">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Chainbody <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/e/e7/Rune_chainbody_detail.png/120px-Rune_chainbody_detail.png?57a93"></span></th>
+            <td id="runechain" class="runechain">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Platebody <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/7/72/Rune_platebody_detail.png/130px-Rune_platebody_detail.png?7052f"></span></th>
+            <td id="runeplate" class="runeplate">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Platelegs <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/1/1d/Rune_platelegs_detail.png/90px-Rune_platelegs_detail.png?fae21"></span></th>
+            <td id="runelegs" class="runelegs">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Plateskirt <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/e/e0/Rune_plateskirt_detail.png/120px-Rune_plateskirt_detail.png?bc5e2"></span></th>
+            <td id="runeskirt" class="runeskirt">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Hally <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/d/dc/Rune_halberd_detail.png/150px-Rune_halberd_detail.png?5a4e9"></span></th>
+            <td id="runehally" class="runehally">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Pickaxe <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/3/39/Rune_pickaxe_detail.png/130px-Rune_pickaxe_detail.png?ff943"></span></th>
+            <td id="runepick" class="runepick">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Dragon Hally <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/7/76/Dragon_halberd_detail.png/130px-Dragon_halberd_detail.png?e61b2"></span></th>
+            <td id="dragonhally" class="dragonhally">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Death Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/7/7d/Death_rune_detail.png/120px-Death_rune_detail.png?9e79a"></span></th>
+            <td id="death" class="death">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Law Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/0/0f/Law_rune_detail.png/120px-Law_rune_detail.png?9e79a"></span></th>
+            <td id="law" class="law">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Chaos Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/a/ae/Chaos_rune_detail.png/120px-Chaos_rune_detail.png?9379c"></span></th>
+            <td id="chaos" class="chaos">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Cosmic Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/d/dc/Cosmic_rune_detail.png/120px-Cosmic_rune_detail.png?9e79a"></span></th>
+            <td id="cosmic" class="cosmic">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Nature Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/e/ef/Nature_rune_detail.png/120px-Nature_rune_detail.png?9e79a"></span></th>
+            <td id="nature" class="nature">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Blood Rune <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/c/c1/Blood_rune_detail.png/120px-Blood_rune_detail.png?2cf9e"></span></th>
+            <td id="blood" class="blood">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Mithril Arrow <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/a/a7/Mithril_arrow_detail.png/120px-Mithril_arrow_detail.png?d844c"></span></th>
+            <td id="mithrilarrow" class="mithrilarrow">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Adamant Arrow <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/b/b3/Adamant_arrow_detail.png/120px-Adamant_arrow_detail.png?87c24"></span></th>
+            <td id="addyarrow" class="addyarrow">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Rune Arrow <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/a/ae/Rune_arrow_detail.png/120px-Rune_arrow_detail.png?35478"></span></th>
+            <td id="runearrow" class="runearrow">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Dragon Arrow <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/1/19/Dragon_arrow_detail.png/120px-Dragon_arrow_detail.png?2352d"></span></th>
+            <td id="dragonarrow" class="dragonarrow">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Uncut Sapphire <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/d/dd/Uncut_sapphire_detail.png/130px-Uncut_sapphire_detail.png?1cd1c"></span></th>
+            <td id="uncutsapphire" class="uncutsapphire">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Uncut Emerald <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/b/b8/Uncut_emerald_detail.png/130px-Uncut_emerald_detail.png?6d28f"></span></th>
+            <td id="uncutemerald" class="uncutemerald">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Uncut Ruby <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/1/1a/Uncut_ruby_detail.png/130px-Uncut_ruby_detail.png?1cd1c"></span></th>
+            <td id="uncutruby" class="uncutruby">0</td>
+        </tr>
+        <tr>
+            <th scope="row">Uncut Diamond <span><img class="item-icon" src="https://oldschool.runescape.wiki/images/thumb/0/08/Uncut_diamond_detail.png/130px-Uncut_diamond_detail.png?79726"></span></th>
+            <td id="uncutdiamond" class="uncutdiamond">0</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="padding-7 row">
+        <div class="col">
+            <div style="margin-bottom: 5px"><input id="killNum" type="number" max="20000" min="1"></div>
+            <div><button onclick="updateTable(['uncutdiamond', 'uncutruby', 'uncutemerald', 'uncutsapphire', 'dragonarrow', 'runearrow', 'addyarrow', 'mithrilarrow', 'blood',
+            'nature', 'cosmic', 'chaos', 'law', 'death', 'dragonhally', 'runepick', 'runehally', 'runeskirt', 'runelegs', 'runeplate', 'runechain', 'runefull', 'shards',
+            'elite', 'bstaff', 'coins', 'weaponseed', 'armourseed', 'blade', 'youngllef'], xGauntlet, getKillNum)" class="btn btn-outline-warning simulate-btn">Simulate</button></div>
+        </div>
+    </div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</body>
+</html>
